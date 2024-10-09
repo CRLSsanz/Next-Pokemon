@@ -43,13 +43,12 @@ export default function Home() {
 
   useEffect(() => {
     const api = async () => {
-      const limit = 15;
+      const limit = 12;
       const xp = (xpage - 1) * limit;
       const apiPoke = await axios.get(
         `${URL_POKEMON}/?offset=${xp}&limit=${limit}`
       );
       setArrayPokemon(apiPoke.data.results);
-      
     };
 
     api();
@@ -78,83 +77,134 @@ export default function Home() {
       : arrayPokemon;
 
   return (
-    <div className="h-full flex flex-col items-center ">
-      <section className="h-[50vh] flex-col items-center justify-center">
-        <h1 className="text-3xl">Pokèdex</h1>
-        <h2>Prototype</h2>
-        <h2>v. 2.0</h2>
-        <h2>
-          based on <strong>PokedAPI</strong>.
-        </h2>
-        <h2>by CRLSCODE</h2>
-      </section>
+    <div className="h-[600px] w-[1200px] text-white flex flex-row rounded-3xl bg-black/20 backdrop-blur-2xl ">
+      <section className="hidden lg:block lg:basis-1/4 h-full flex-col bg-black/40 rounded-l-3xl backdrop-blur-2xl p-5">
+        <h1 className="text-xl font-semibold">Types</h1>
+        <h1 className="text-sm">All Pokemon</h1>
 
-      <section className="w-full text-white flex justify-center">
-        <div className="w-[1024px] min-h-screen bg-black [#1e2128] p-5">
-          <div className="flex flex-col md:flex-row gap-5 mb-5">
-            <div className="md:basis-1/2">
-              <h1 className="">Busqueda por tipo</h1>
-              <div className="w-[300px] Xoverflow-scroll">
-                <div className="w-full flex flex-row overflow-auto bg-gray-800 p-2 rounded-lg border border-gray-600 gap-2">
-                  <div className="bg-orange-500 rounded-full p-1">
-                    <FaFire />
-                  </div>
-                  <div className="bg-green-500 rounded-full p-1">
-                    <FaLeaf />
-                  </div>
-                  <div className="bg-gray-500 rounded-full p-1">
-                    <FaDragon />
-                  </div>
-                  <div className="bg-blue-500 rounded-full p-1">
-                    <MdWaterDrop />
-                  </div>
-                  <div className="bg-sky-500 rounded-full p-1">
-                    <GiFluffyWing />
-                  </div>
-                  <div className="bg-purple-500 rounded-full p-1">
-                    <FaSkull />
-                  </div>
-                  <div className="bg-red-500 rounded-full p-1">
-                    <IoIosBug />
-                  </div>
-                  <div className="bg-neutral-500 rounded-full p-1">
-                    <FaCircleNotch />
-                  </div>
-                  <div className="bg-purple-500 rounded-full p-1">
-                    <PiSpiralFill />
-                  </div>
-                  <div className="bg-red-700 rounded-full p-1">
-                    <FaFistRaised />
-                  </div>
-                  <div className="bg-yellow-500 rounded-full p-1">
-                    <AiFillThunderbolt />
-                  </div>
-                  <div className="bg-yellow-900 rounded-full p-1">
-                    <MdTerrain />
-                  </div>
-                  <div className="bg-stone-700 rounded-full p-1">
-                    <FaHillRockslide />
-                  </div>
-                  <div className="bg-cyan-500 rounded-full p-1">
-                    <MdOutlineSevereCold />
-                  </div>
-                  <div className="bg-gray-500 rounded-full p-1">
-                    <GiAlienFire />
-                  </div>
-                  <div className="bg-violet-700 rounded-full p-1">
-                    <BiSolidGhost />
-                  </div>
-                  <div className="bg-zinc-500 rounded-full p-1">
-                    <GiHexagonalNut />
-                  </div>
-                </div>
-              </div>
+        <div className=" grid grid-cols-2 py-5 gap-3">
+          <div className="flex flex-row gap-1">
+            <div className="bg-orange-500 rounded-full p-1.5">
+              <FaFire />
             </div>
-
-            <Search obtenerSearch={obtenerSearch} />
+            <h1>Fire</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-gray-500 rounded-full p-1.5">
+              <FaDragon />
+            </div>
+            <h1>Dragon</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-green-500 rounded-full p-1.5">
+              <FaLeaf />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-blue-500 rounded-full p-1.5">
+              <MdWaterDrop />
+            </div>
+            <h1>Water</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-sky-400 rounded-full p-1.5">
+              <GiFluffyWing />
+            </div>
+            <h1>Wing</h1>
           </div>
 
-          <div className="flex flex-row items-center justify-center gap-x-2 mb-5">
+          <div className="flex flex-row gap-1">
+            <div className="bg-purple-700 rounded-full p-1.5">
+              <FaSkull />
+            </div>
+            <h1>Poison</h1>
+          </div>
+
+          <div className="flex flex-row gap-1">
+            <div className="bg-red-500 rounded-full p-1.5">
+              <IoIosBug />
+            </div>
+            <h1>Bug</h1>
+          </div>
+
+          <div className="flex flex-row gap-1">
+            <div className="bg-neutral-500 rounded-full p-1.5">
+              <FaCircleNotch />
+            </div>
+            <h1>Normal</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-purple-500 rounded-full p-1.5">
+              <PiSpiralFill />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-red-500 rounded-full p-1.5">
+              <FaFistRaised />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-yellow-500 rounded-full p-1.5">
+              <AiFillThunderbolt />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-yellow-900 rounded-full p-1.5">
+              <MdTerrain />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-stone-700 rounded-full p-1.5">
+              <FaHillRockslide />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-cyan-500 rounded-full p-1.5">
+              <MdOutlineSevereCold />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-gray-500 rounded-full p-1.5">
+              <GiAlienFire />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-violet-700 rounded-full p-1.5">
+              <BiSolidGhost />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-zinc-500 rounded-full p-1.5">
+              <GiHexagonalNut />
+            </div>
+            <h1>Steel</h1>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full lg:basis-3/4">
+        <div className="p-5">
+          <h1 className="text-xl font-semibold">Good morning, Charlie </h1>
+          <h1 className="text-sm mb-5">List Pokemons</h1>
+
+          <Search obtenerSearch={obtenerSearch} />
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 mt-10">
+            {filterPokemons?.map((items, index) => (
+              <MiniCard key={index} data={items} />
+            ))}
+          </div>
+
+          <div className="flex flex-row items-center justify-center gap-x-4">
             <span
               onClick={() => {
                 if (xpage === 1) {
@@ -166,7 +216,7 @@ export default function Home() {
               <FaChevronLeft />
             </span>
             <span>{xpage}</span>
-            <span>DE</span>
+            <span>de</span>
             <span>{Math.round(globalPokemon?.length / 15)}</span>
             <span
               onClick={() => {
@@ -180,16 +230,7 @@ export default function Home() {
             </span>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
-            {filterPokemons?.map((items, index) =>(
-              <MiniCard key={index} data={items} />
-            ))}
-          </div>
         </div>
-      </section>
-
-      <section className="">
-        <h1 className="p-5">FOOTER</h1>
       </section>
     </div>
   );

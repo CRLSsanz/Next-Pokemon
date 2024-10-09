@@ -7,6 +7,7 @@ import { BiSolidGhost } from "react-icons/bi";
 import {
   FaCircleNotch,
   FaDragon,
+  FaFire,
   FaFistRaised,
   FaLeaf,
   FaSkull,
@@ -191,134 +192,269 @@ const Pokemon = ({ params }: any) => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-black text-white p-10">
-      <div
-        className={` w-full bg-gradient-to-b from-[#040b1d] ${bgColor?.color} rounded-3xl border border-gray-500/50`}
-      >
-        <section>
-          <div className="flex -mx-5 justify-center">
-            {/** efecto de imagen minuto 107 */}
-            <img
-              className="w-full Xz-00 hover:scale-110"
-              src={pokemon?.sprites?.other["official-artwork"]?.front_default}
-              alt=""
-            />
-          </div>
-        </section>
+    <div className="h-[600px] w-full lg:w-[1200px] m-10 lg:m-0 text-white flex flex-row rounded-3xl bg-black/20 backdrop-blur-2xl ">
+      <section className="hidden lg:block lg:basis-1/4 h-full flex-col bg-black/40 rounded-l-3xl backdrop-blur-2xl p-5">
+        <h1 className="text-xl font-semibold">Types</h1>
+        <h1 className="text-sm">All Pokemon</h1>
 
-        <section className="text-center mb-2">
-          <h1 className="text-gray-500">#00{pokemon.id}</h1>
-          <h1 className="capitalize text-3xl">{pokemon.name}</h1>
-          <h1 className="text-gray-500 text-sm capitalize">
-            {especie?.habitat?.name} Pokemon
-          </h1>
-        </section>
-
-        <section>
-          <div className="flex flex-row justify-center gap-2">
-            {pokemon?.types?.map((item: any, index: any) => {
-              return (
-                <div
-                  key={index}
-                  className={`w-28 flex flex-row justify-center rounded-md border ${resultColorBorder(
-                    item.type.name
-                  )} py-1.5 mb-4 gap-2 ${resultColorText(item.type.name)} `}
-                >
-                  {resultIcon(item.type.name)}
-                  <h1 className=" capitalize text-sm text-center font-semibold">
-                    {item.type.name}
-                  </h1>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="flex flex-row text-white text-center mb-5">
-            <div className="w-full">
-              <h1 className="text-2xl font-bold">
-                {(Number(pokemon.height) * 0.1).toFixed(1)} M
-              </h1>
-              <div className="flex flex-row justify-center gap-x-1">
-                <CiRuler />
-                <h1 className="text-sm"> Altura</h1>
-              </div>
+        <div className=" grid grid-cols-2 py-5 gap-3">
+          <div className="flex flex-row gap-1">
+            <div className="bg-orange-500 rounded-full p-1.5">
+              <FaFire />
             </div>
-            <div className="w-full">
-              <h1 className="text-2xl font-bold">{pokemon.weight} KG</h1>
-              <div className="flex flex-row justify-center gap-1">
-                <CiDumbbell />
-                <h1 className="text-sm"> Peso</h1>
-              </div>
+            <h1>Fire</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-gray-500 rounded-full p-1.5">
+              <FaDragon />
             </div>
+            <h1>Dragon</h1>
           </div>
-        </section>
-
-        <section className=" px-5 mb-5">
-          <div className="w-full px-5 py-2 rounded-lg bg-black/20">
-            {pokemon?.stats?.map((item: any, index: any) => {
-              return (
-                <div key={index} className="mb-2">
-                  <div className=" w-full flex flex-row justify-between">
-                    <h1 className="capitalize">{item.stat.name}</h1>
-                    <h1>{item.base_stat}</h1>
-                  </div>
-                  <div className="flex items-start justify-start">
-                    <progress
-                      value={item.base_stat}
-                      max={110}
-                      className="w-full h-2"
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        <h1 className="h-28"></h1>
-      </div>
-
-      <section className="p-5 -mt-28">
-        <div className="flex flex-row px-5 mb-2">
-          <div className="w-32 bg-gray-700/20 rounded-lg ">
-            <div className="flex justify-center px-5">
-              <img
-                className="w-full -mt-5 hover:scale-110"
-                src={pokemon?.sprites?.other["official-artwork"]?.front_default}
-                alt=""
-              />
+          <div className="flex flex-row gap-1">
+            <div className="bg-green-500 rounded-full p-1.5">
+              <FaLeaf />
             </div>
+            <h1>Grass</h1>
           </div>
-          <div className="pl-5">
-            <h1 className="text-sm text-gray-500">#001</h1>
-            <h1 className="font-semibold">Charmileon</h1>
-            <h1 className="text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">
-              Fire
-            </h1>
-          </div>
-        </div>
-
-        <div className="ml-5 w-16 h-16 border-r border-gray-500/30 mb-5"> </div>
-
-        <div className="flex flex-row px-5">
-          <div className="w-32 bg-gray-500/10 rounded-lg ">
-            <div className="flex justify-center px-5">
-              <img
-                className="w-full -mt-5 hover:scale-110"
-                src={pokemon?.sprites?.other["official-artwork"]?.front_default}
-                alt=""
-              />
+          <div className="flex flex-row gap-1">
+            <div className="bg-blue-500 rounded-full p-1.5">
+              <MdWaterDrop />
             </div>
+            <h1>Water</h1>
           </div>
-          <div className="pl-5">
-            <h1 className="text-gray-500">#002</h1>
-            <h1 className="font-semibold">Charizar</h1>
-            <div className="bg-transparent text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">
-              Fire
+          <div className="flex flex-row gap-1">
+            <div className="bg-sky-400 rounded-full p-1.5">
+              <GiFluffyWing />
             </div>
+            <h1>Wing</h1>
+          </div>
+
+          <div className="flex flex-row gap-1">
+            <div className="bg-purple-700 rounded-full p-1.5">
+              <FaSkull />
+            </div>
+            <h1>Poison</h1>
+          </div>
+
+          <div className="flex flex-row gap-1">
+            <div className="bg-red-500 rounded-full p-1.5">
+              <IoIosBug />
+            </div>
+            <h1>Bug</h1>
+          </div>
+
+          <div className="flex flex-row gap-1">
+            <div className="bg-neutral-500 rounded-full p-1.5">
+              <FaCircleNotch />
+            </div>
+            <h1>Normal</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-purple-500 rounded-full p-1.5">
+              <PiSpiralFill />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-red-500 rounded-full p-1.5">
+              <FaFistRaised />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-yellow-500 rounded-full p-1.5">
+              <AiFillThunderbolt />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-yellow-900 rounded-full p-1.5">
+              <MdTerrain />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-stone-700 rounded-full p-1.5">
+              <FaHillRockslide />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-cyan-500 rounded-full p-1.5">
+              <MdOutlineSevereCold />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-gray-500 rounded-full p-1.5">
+              <GiAlienFire />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-violet-700 rounded-full p-1.5">
+              <BiSolidGhost />
+            </div>
+            <h1>Grass</h1>
+          </div>
+          <div className="flex flex-row gap-1">
+            <div className="bg-zinc-500 rounded-full p-1.5">
+              <GiHexagonalNut />
+            </div>
+            <h1>Steel</h1>
           </div>
         </div>
       </section>
+
+      <div
+        className={`relative w-full lg:basis-3/4 rounded-r-3xl lg:bg-gradient-to-b from-[#040b1dbb] ${bgColor?.color} text-white lg:pl-10`}
+      >
+        <div className="flex flex-col lg:flex-row-reverse">
+          <section className="basis-1/2">
+            <div className="flex pl-10 lg:pl-0 lg:-mx-10 -mt-10 justify-center">
+              {/** efecto de imagen minuto 107 */}
+              <img
+                className="w-full Xz-00 hover:scale-110"
+                src={pokemon?.sprites?.other["official-artwork"]?.front_default}
+                alt=""
+              />
+            </div>
+          </section>
+
+          <section className={` basis-1/2 lg:pt-5 lg:pr-10 `}>
+            <section className="text-center mb-5">
+              <div className="absolute top-5 left-5 w-16 rounded-lg text-gray-200 bg-red-700 flex flex-row items-center p-1 gap-1 mb-4">
+                <img
+                  src="https://www.freeiconspng.com/uploads/pokeball-icon-4.png"
+                  width="20"
+                  alt="Pokeball"
+                />
+                <h1 className="font-semibold">0{pokemon.id}</h1>
+              </div>
+
+              <h1 className="capitalize tracking-wider text-3xl mb-2">
+                {pokemon.name}
+              </h1>
+              <h1 className="text-gray-300 text-sm capitalize">
+                {especie?.habitat?.name} Pokemon
+              </h1>
+            </section>
+
+            <section>
+              <div className="flex flex-row justify-center gap-4">
+                {pokemon?.types?.map((item: any, index: any) => {
+                  return (
+                    <div
+                      key={index}
+                      className={`w-24 flex flex-row justify-center items-center rounded-lg border ${resultColorBorder(
+                        item.type.name
+                      )} py-1 text-xl mb-4 gap-2 ${resultColorText(item.type.name)} `}
+                    >
+                      {resultIcon(item.type.name)}
+                      <h1 className=" capitalize text-sm text-center font-semibold">
+                        {item.type.name}
+                      </h1>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="w-full flex flex-row justify-evenly text-white mb-5">
+                <div className="text-center">
+                  <h1 className="text-xl font-semibold">
+                    {(Number(pokemon.height) * 0.1).toFixed(1)} M
+                  </h1>
+                  <div className="flex flex-row justify-center items-center gap-x-1">
+                    <CiRuler />
+                    <h1 className="text-sm"> Altura</h1>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <h1 className="text-xl font-semibold">{pokemon.weight} KG</h1>
+                  <div className="flex flex-row justify-center items-center gap-1">
+                    <CiDumbbell />
+                    <h1 className="text-sm"> Peso</h1>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="px-5 lg:px-0 mb-5">
+              <div className="w-full px-10 py-5 rounded-2xl bg-black/20">
+                {pokemon?.stats?.map((item: any, index: any) => {
+                  return (
+                    <div key={index} className="mb-2">
+                      <div className=" w-full flex flex-row items-center justify-between gap-3">
+                        <h1 className="w-56 text-gray-200 capitalize">
+                          {item.stat.name}
+                        </h1>
+                        <h1 className="w-12 font-semibold text-end">
+                          {item.base_stat}
+                        </h1>
+                        <progress
+                          value={item.base_stat}
+                          max={110}
+                          className="w-full h-2"
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+
+            <h1 className="h-28 lg:h-0"></h1>
+          </section>
+        </div>
+
+        <section className="hidden p-5 -mt-28 lg:mt-0">
+          <div className="flex flex-row px-5 mb-2">
+            <div className="w-32 bg-gray-700/20 rounded-lg ">
+              <div className="flex justify-center px-5">
+                <img
+                  className="w-full -mt-5 hover:scale-110"
+                  src={
+                    pokemon?.sprites?.other["official-artwork"]?.front_default
+                  }
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="pl-5">
+              <h1 className="text-sm text-gray-500">#001</h1>
+              <h1 className="font-semibold">Charmileon</h1>
+              <h1 className="text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">
+                Fire
+              </h1>
+            </div>
+          </div>
+
+          <div className="ml-5 w-16 h-16 border-r border-gray-500/30 mb-5">
+            {" "}
+          </div>
+
+          <div className="flex flex-row px-5">
+            <div className="w-32 bg-gray-500/10 rounded-lg ">
+              <div className="flex justify-center px-5">
+                <img
+                  className="w-full -mt-5 hover:scale-110"
+                  src={
+                    pokemon?.sprites?.other["official-artwork"]?.front_default
+                  }
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="pl-5">
+              <h1 className="text-gray-500">#002</h1>
+              <h1 className="font-semibold">Charizar</h1>
+              <div className="bg-transparent text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">
+                Fire
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

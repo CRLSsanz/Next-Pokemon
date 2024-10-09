@@ -21,6 +21,10 @@ export const metadata: Metadata = {
 // WEB TUTORIAL
 // https://www.youtube.com/watch?v=0jFq3VHj-rw&t=7s
 
+//bg-cover bg-fixed bg-[0%] bg-[url('/images/piggy-mobile.jpg')] min-h-screen
+//https://www.pixelstalk.net/wp-content/uploads/2016/02/Pokemon-Backgrounds-for-desktop.jpg
+//
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,7 +35,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="bg-cover bg-fixed bg-[0%] bg-[url('https://wallpapercave.com/wp/wp10742481.jpg')] min-h-screen">
+          <div className="w-full h-screen p-5 lg:p-0 flex items-center justify-center ">{children}</div>
+        </div>
       </body>
     </html>
   );

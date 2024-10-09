@@ -7,6 +7,7 @@ import {
   FaDragon,
   FaFistRaised,
   FaLeaf,
+  FaRegHeart,
   FaSkull,
   FaStar,
 } from "react-icons/fa";
@@ -19,6 +20,7 @@ import { FaHillRockslide } from "react-icons/fa6";
 import { BiSolidGhost } from "react-icons/bi";
 import { HiMiniViewfinderCircle } from "react-icons/hi2";
 import Link from "next/link";
+import { TfiArrowsCorner } from "react-icons/tfi";
 
 const BackgroundColor = [
   { name: "red", color: "to-red-500/20" },
@@ -151,7 +153,7 @@ const MiniCard = ({ data }: any) => {
         </div>
 
         <div className="pb-4 px-4">
-          <h1 className="capitalize font-semibold text-lg mb-2">
+          <h1 className="capitalize font-semibold mb-2">
             {pokemon.name}
           </h1>
 
@@ -160,7 +162,7 @@ const MiniCard = ({ data }: any) => {
               return (
                 <div
                   key={index}
-                  className={`p-1 text-xl rounded-full ${resultColorType(
+                  className={`p-1.5 rounded-full ${resultColorType(
                     item.type.name
                   )}`}
                 >
@@ -171,16 +173,16 @@ const MiniCard = ({ data }: any) => {
           </div>
         </div>
 
-        <div className="absolute top-2 right-2 flex flex-col gap-2 text-black/50 text-lg">
-          <div>
-            <FaStar />
-          </div>
+        <div className="absolute top-2 right-2 flex flex-col gap-2">
           <Link
             href={`/${data?.name.replaceAll(" ", "-").toLowerCase()}#view`}
-            className="text-black animate-spin transition-all duration-700"
+            className="text-sm bg-gray-500/30 rounded-full p-1 active:animate-ping rotate-90"
           >
-            <HiMiniViewfinderCircle />
+            <TfiArrowsCorner />
           </Link>
+          <div className="hidden text-sm text-gray-200/50 bg-gray-500/50 rounded-full p-1 active:animate-ping">
+            <FaRegHeart />
+          </div>
         </div>
       </div>
     </div>
