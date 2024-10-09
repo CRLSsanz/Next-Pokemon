@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaFire, FaLeaf, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 const Search = ({obtenerSearch}:any) => {
   return (

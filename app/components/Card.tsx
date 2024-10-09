@@ -7,8 +7,6 @@ import {
   FaLeaf,
   FaSkull,
   FaFistRaised,
-  FaMountain,
-  FaStarOfLife,
   FaDragon,
 } from "react-icons/fa";
 import { AiOutlineThunderbolt, AiFillThunderbolt } from "react-icons/ai";
@@ -19,17 +17,8 @@ import { ImFire } from "react-icons/im";
 import { PiSpiralFill } from "react-icons/pi";
 import axios from "axios";
 import { FaHillRockslide } from "react-icons/fa6";
-import { TbTopologyStar3 } from "react-icons/tb";
 import { BiSolidGhost } from "react-icons/bi";
 import Link from "next/link";
-
-
-type Poke = {
-  name: string;
-  url: string;
-};
-
-//const Pok: Pokem[] = [];
 
 const Pok: any = [];
 const Specie: any = {};
