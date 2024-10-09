@@ -102,8 +102,8 @@ const TypesColor = [
 
 const Pok: any = [];
 
-const page = ({ params }: any) => {
-  let name = params.name.replaceAll("-", " ");
+const Pokemon = ({ params }: any) => {
+  const name = params.name.replaceAll("-", " ");
   //console.log(name);
   //let name2 = name.replace(/\b[a-z]/g, (c: any) => c.toUpperCase());
   //console.log(name2);
@@ -323,4 +323,4 @@ const page = ({ params }: any) => {
   );
 };
 
-export default page;
+export default Pokemon;
