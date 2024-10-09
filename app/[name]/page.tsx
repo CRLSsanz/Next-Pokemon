@@ -292,7 +292,9 @@ const page = ({ params }: any) => {
           <div className="pl-5">
             <h1 className="text-sm text-gray-500">#001</h1>
             <h1 className="font-semibold">Charmileon</h1>
-            <h1 className="text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">Fire</h1>
+            <h1 className="text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">
+              Fire
+            </h1>
           </div>
         </div>
 
@@ -311,7 +313,9 @@ const page = ({ params }: any) => {
           <div className="pl-5">
             <h1 className="text-gray-500">#002</h1>
             <h1 className="font-semibold">Charizar</h1>
-            <div className="bg-transparent text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">Fire</div>
+            <div className="bg-transparent text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">
+              Fire
+            </div>
           </div>
         </div>
       </section>
