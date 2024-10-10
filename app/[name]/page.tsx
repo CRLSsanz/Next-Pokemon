@@ -20,6 +20,7 @@ import { MdOutlineSevereCold, MdTerrain, MdWaterDrop } from "react-icons/md";
 import { PiSpiralFill } from "react-icons/pi";
 import { URL_POKEMON, URL_SPECIES } from "../api/apiRest";
 import { CiDumbbell, CiRuler } from "react-icons/ci";
+import Evolution from "../components/Evolution";
 
 const BackgroundColor = [
   { name: "red", color: "to-red-500/30" },
@@ -192,7 +193,7 @@ const Pokemon = ({ params }: any) => {
   };
 
   return (
-    <div className="lg:h-[600px] w-full lg:w-[1200px] m-10 lg:m-0 text-white flex flex-col lg:flex-row rounded-3xl Xbg-black/20 ">
+    <div className="relative lg:h-[600px] w-full lg:w-[1200px] m-10 lg:m-0 text-white flex flex-col lg:flex-row rounded-3xl Xbg-black/20 ">
       <section className="hidden lg:block lg:basis-1/4 h-full flex-col bg-black/40 rounded-l-3xl backdrop-blur-2xl p-5">
         <h1 className="text-xl font-semibold">Types</h1>
         <h1 className="text-sm">All Pokemon</h1>
@@ -450,6 +451,10 @@ const Pokemon = ({ params }: any) => {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="absolute bottom-10 right-10">
+        <Evolution poke={especie}  />
       </section>
     </div>
   );

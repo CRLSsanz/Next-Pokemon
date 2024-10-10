@@ -70,11 +70,12 @@ export default function Home() {
   const obtenerSearch = (e: any) => {
     const texto = e.toLowerCase();
     setSearch(texto);
+    setXpage(1)
   };
 
   const filterPokemons =
-    search?.length > 0
-      ? arrayPokemon?.filter((pokemon) => pokemon?.name?.includes(search))
+    search?.length > 2
+      ? globalPokemon?.filter(pokemon => pokemon?.name?.includes(search))
       : arrayPokemon;
 
   return (
@@ -218,7 +219,7 @@ export default function Home() {
             </span>
             <span>{xpage}</span>
             <span>de</span>
-            <span>{Math.round(globalPokemon?.length / 15)}</span>
+            <span>{Math.round(globalPokemon?.length / 12)}</span>
             <span
               onClick={() => {
                 if (xpage === 67) {
