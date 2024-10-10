@@ -25,6 +25,7 @@ import { AiFillThunderbolt } from "react-icons/ai";
 import { PiSpiralFill } from "react-icons/pi";
 import { IoIosBug } from "react-icons/io";
 import MiniCard from "./components/MiniCard";
+import { ImFire } from "react-icons/im";
 
 const Pok: any = [];
 
@@ -77,112 +78,112 @@ export default function Home() {
       : arrayPokemon;
 
   return (
-    <div className="h-[600px] w-[1200px] text-white flex flex-row rounded-3xl bg-black/20 backdrop-blur-2xl ">
+    <div className="lg:h-[600px] w-[1200px] text-white flex flex-row rounded-3xl bg-black/20 backdrop-blur-2xl ">
       <section className="hidden lg:block lg:basis-1/4 h-full flex-col bg-black/40 rounded-l-3xl backdrop-blur-2xl p-5">
         <h1 className="text-xl font-semibold">Types</h1>
         <h1 className="text-sm">All Pokemon</h1>
 
-        <div className=" grid grid-cols-2 py-5 gap-3">
-          <div className="flex flex-row gap-1">
+        <div className=" grid grid-cols-2 py-5 gap-4">
+          <div className="flex flex-row gap-2">
             <div className="bg-orange-500 rounded-full p-1.5">
-              <FaFire />
+              <ImFire />
             </div>
             <h1>Fire</h1>
           </div>
-          <div className="flex flex-row gap-1">
-            <div className="bg-gray-500 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-gray-800 rounded-full p-1.5">
               <FaDragon />
             </div>
             <h1>Dragon</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-green-500 rounded-full p-1.5">
               <FaLeaf />
             </div>
             <h1>Grass</h1>
           </div>
-          <div className="flex flex-row gap-1">
-            <div className="bg-blue-500 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-blue-600 rounded-full p-1.5">
               <MdWaterDrop />
             </div>
             <h1>Water</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-sky-400 rounded-full p-1.5">
               <GiFluffyWing />
             </div>
             <h1>Wing</h1>
           </div>
 
-          <div className="flex flex-row gap-1">
-            <div className="bg-purple-700 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-purple-500 rounded-full p-1.5">
               <FaSkull />
             </div>
             <h1>Poison</h1>
           </div>
 
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-red-500 rounded-full p-1.5">
               <IoIosBug />
             </div>
             <h1>Bug</h1>
           </div>
 
-          <div className="flex flex-row gap-1">
-            <div className="bg-neutral-500 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-neutral-600 rounded-full p-1.5">
               <FaCircleNotch />
             </div>
             <h1>Normal</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-purple-500 rounded-full p-1.5">
               <PiSpiralFill />
             </div>
-            <h1>Grass</h1>
+            <h1>Psychic</h1>
           </div>
-          <div className="flex flex-row gap-1">
-            <div className="bg-red-500 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-red-700 rounded-full p-1.5">
               <FaFistRaised />
             </div>
-            <h1>Grass</h1>
+            <h1>Fighting</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-yellow-500 rounded-full p-1.5">
               <AiFillThunderbolt />
             </div>
-            <h1>Grass</h1>
+            <h1>Electric</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-yellow-900 rounded-full p-1.5">
               <MdTerrain />
             </div>
-            <h1>Grass</h1>
+            <h1>Ground</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-stone-700 rounded-full p-1.5">
               <FaHillRockslide />
             </div>
-            <h1>Grass</h1>
+            <h1>Rock</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-cyan-500 rounded-full p-1.5">
               <MdOutlineSevereCold />
             </div>
-            <h1>Grass</h1>
+            <h1>Ice</h1>
           </div>
-          <div className="flex flex-row gap-1">
-            <div className="bg-gray-500 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-pink-500 rounded-full p-1.5">
               <GiAlienFire />
             </div>
-            <h1>Grass</h1>
+            <h1>Fairy</h1>
           </div>
-          <div className="flex flex-row gap-1">
-            <div className="bg-violet-700 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-purple-900 rounded-full p-1.5">
               <BiSolidGhost />
             </div>
-            <h1>Grass</h1>
+            <h1>Ghost</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-zinc-500 rounded-full p-1.5">
               <GiHexagonalNut />
             </div>

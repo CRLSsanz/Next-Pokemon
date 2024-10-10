@@ -36,7 +36,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="bg-cover bg-fixed bg-[0%] bg-[url('https://wallpapercave.com/wp/wp10742481.jpg')] min-h-screen">
-          <div className="w-full h-screen p-5 lg:p-0 flex items-center justify-center ">{children}</div>
+          <div className="w-full h-full lg:h-screen p-5 lg:p-0 flex lg:items-center justify-center ">{children}</div>
         </div>
       </body>
     </html>

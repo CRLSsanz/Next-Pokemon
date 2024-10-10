@@ -35,23 +35,23 @@ const BackgroundColor = [
 ];
 
 const TypesColor = [
-  { name: "normal", color: "bg-neutral-500", icon: "<FaLeaf />" },
-  { name: "dragon", color: "bg-slate-500", icon: "<FaLeaf />" },
-  { name: "steel", color: "bg-zinc-600", icon: "<FaLeaf />" },
-  { name: "rock", color: "bg-stone-700", icon: "<FaLeaf />" },
-  { name: "poison", color: "bg-purple-500", icon: "FaLeaf" },
-  { name: "psychic", color: "bg-violet-500", icon: "FaLeaf" },
-  { name: "ghost", color: "bg-violet-600", icon: "FaLeaf" },
-  { name: "grass", color: "bg-green-600", icon: "<FaLeaf />" },
   { name: "bug", color: "bg-red-500", icon: "<FaLeaf />" },
+  { name: "dragon", color: "bg-gray-800", icon: "<FaLeaf />" },
+  { name: "electric", color: "bg-yellow-500", icon: "<FaLeaf />" },
   { name: "fighting", color: "bg-red-700", icon: "<FaLeaf />" },
-  { name: "fire", color: "bg-orange-500", icon: "<FaFire />" },
   { name: "fairy", color: "bg-pink-500", icon: "<FaFire />" },
-  { name: "flying", color: "bg-sky-500", icon: "<FaLeaf />" },
-  { name: "ice", color: "bg-blue-500", icon: "<FaLeaf />" },
-  { name: "water", color: "bg-indigo-500", icon: "<FaLeaf />" },
-  { name: "electric", color: "bg-yellow-600", icon: "<FaLeaf />" },
+  { name: "fire", color: "bg-orange-500", icon: "<FaFire />" },
+  { name: "flying", color: "bg-sky-400", icon: "<FaLeaf />" },
+  { name: "ghost", color: "bg-purple-900", icon: "FaLeaf" },
+  { name: "grass", color: "bg-green-600", icon: "<FaLeaf />" },
   { name: "ground", color: "bg-yellow-900", icon: "<FaLeaf />" },
+  { name: "ice", color: "bg-cyan-500", icon: "<FaLeaf />" },
+  { name: "normal", color: "bg-neutral-600", icon: "<FaLeaf />" },
+  { name: "poison", color: "bg-purple-500", icon: "FaLeaf" },
+  { name: "psychic", color: "bg-purple-500", icon: "FaLeaf" },
+  { name: "rock", color: "bg-stone-700", icon: "<FaLeaf />" },
+  { name: "steel", color: "bg-zinc-500", icon: "<FaLeaf />" },
+  { name: "water", color: "bg-blue-600", icon: "<FaLeaf />" },
 ];
 
 const Pok: any = [];

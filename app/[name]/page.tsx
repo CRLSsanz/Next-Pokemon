@@ -22,29 +22,29 @@ import { URL_POKEMON, URL_SPECIES } from "../api/apiRest";
 import { CiDumbbell, CiRuler } from "react-icons/ci";
 
 const BackgroundColor = [
-  { name: "red", color: "to-red-500/20" },
-  { name: "pink", color: "to-pink-500/20" },
-  { name: "green", color: "to-green-500/20" },
-  { name: "blue", color: "to-sky-500/20" },
-  { name: "purple", color: "to-purple-500/20" },
-  { name: "yellow", color: "to-yellow-500/20" },
+  { name: "red", color: "to-red-500/30" },
+  { name: "pink", color: "to-pink-500/30" },
+  { name: "green", color: "to-green-500/30" },
+  { name: "blue", color: "to-sky-500/30" },
+  { name: "purple", color: "to-purple-500/30" },
+  { name: "yellow", color: "to-yellow-500/30" },
   { name: "brown", color: "to-yellow-900" },
-  { name: "white", color: "to-white/50" },
-  { name: "gray", color: "to-gray-500/20" },
+  { name: "white", color: "to-white/30" },
+  { name: "gray", color: "to-gray-500/30" },
 ];
 
 const TypesColor = [
   {
     name: "normal",
-    colorText: "text-neutral-500",
-    colorBorder: "border-neutral-500",
+    colorText: "text-neutral-600",
+    colorBorder: "border-neutral-600",
   },
   {
     name: "dragon",
-    colorText: "text-slate-500",
-    colorBorder: "border-slate-500",
+    colorText: "text-gray-800",
+    colorBorder: "border-gray-800",
   },
-  { name: "steel", colorText: "text-zinc-600", colorBorder: "border-zinc-600" },
+  { name: "steel", colorText: "text-zinc-500", colorBorder: "border-zinc-500" },
   {
     name: "rock",
     colorText: "text-stone-700",
@@ -57,18 +57,18 @@ const TypesColor = [
   },
   {
     name: "psychic",
-    colorText: "text-violet-500",
-    colorBorder: "border-violet-500",
+    colorText: "text-purple-500",
+    colorBorder: "border-purple-500",
   },
   {
     name: "ghost",
-    colorText: "text-violet-600",
-    colorBorder: "border-violet-600",
+    colorText: "text-purple-900",
+    colorBorder: "border-purple-900",
   },
   {
     name: "grass",
-    colorText: "text-green-600",
-    colorBorder: "border-green-600",
+    colorText: "text-green-500",
+    colorBorder: "border-green-500",
   },
   { name: "bug", colorText: "text-red-500", colorBorder: "border-red-500" },
   {
@@ -82,17 +82,17 @@ const TypesColor = [
     colorBorder: "border-orange-500",
   },
   { name: "fairy", colorText: "text-pink-500", colorBorder: "border-pink-500" },
-  { name: "flying", colorText: "text-sky-500", colorBorder: "border-sky-500" },
-  { name: "ice", colorText: "text-blue-500", colorBorder: "border-blue-500" },
+  { name: "flying", colorText: "text-sky-400", colorBorder: "border-sky-400" },
+  { name: "ice", colorText: "text-cyan-500", colorBorder: "border-cyan-500" },
   {
     name: "water",
-    colorText: "text-indigo-500",
-    colorBorder: "border-indigo-500",
+    colorText: "text-blue-500",
+    colorBorder: "border-blue-500",
   },
   {
     name: "electric",
-    colorText: "text-yellow-600",
-    colorBorder: "border-yellow-600",
+    colorText: "text-yellow-500",
+    colorBorder: "border-yellow-500",
   },
   {
     name: "ground",
@@ -192,112 +192,112 @@ const Pokemon = ({ params }: any) => {
   };
 
   return (
-    <div className="h-[600px] w-full lg:w-[1200px] m-10 lg:m-0 text-white flex flex-row rounded-3xl bg-black/20 backdrop-blur-2xl ">
+    <div className="lg:h-[600px] w-full lg:w-[1200px] m-10 lg:m-0 text-white flex flex-col lg:flex-row rounded-3xl Xbg-black/20 ">
       <section className="hidden lg:block lg:basis-1/4 h-full flex-col bg-black/40 rounded-l-3xl backdrop-blur-2xl p-5">
         <h1 className="text-xl font-semibold">Types</h1>
         <h1 className="text-sm">All Pokemon</h1>
 
-        <div className=" grid grid-cols-2 py-5 gap-3">
-          <div className="flex flex-row gap-1">
+        <div className=" grid grid-cols-2 py-5 gap-4">
+          <div className="flex flex-row gap-2">
             <div className="bg-orange-500 rounded-full p-1.5">
-              <FaFire />
+              <ImFire />
             </div>
             <h1>Fire</h1>
           </div>
-          <div className="flex flex-row gap-1">
-            <div className="bg-gray-500 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-gray-800 rounded-full p-1.5">
               <FaDragon />
             </div>
             <h1>Dragon</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-green-500 rounded-full p-1.5">
               <FaLeaf />
             </div>
             <h1>Grass</h1>
           </div>
-          <div className="flex flex-row gap-1">
-            <div className="bg-blue-500 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-blue-600 rounded-full p-1.5">
               <MdWaterDrop />
             </div>
             <h1>Water</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-sky-400 rounded-full p-1.5">
               <GiFluffyWing />
             </div>
             <h1>Wing</h1>
           </div>
 
-          <div className="flex flex-row gap-1">
-            <div className="bg-purple-700 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-purple-500 rounded-full p-1.5">
               <FaSkull />
             </div>
             <h1>Poison</h1>
           </div>
 
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-red-500 rounded-full p-1.5">
               <IoIosBug />
             </div>
             <h1>Bug</h1>
           </div>
 
-          <div className="flex flex-row gap-1">
-            <div className="bg-neutral-500 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-neutral-600 rounded-full p-1.5">
               <FaCircleNotch />
             </div>
             <h1>Normal</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-purple-500 rounded-full p-1.5">
               <PiSpiralFill />
             </div>
-            <h1>Grass</h1>
+            <h1>Psychic</h1>
           </div>
-          <div className="flex flex-row gap-1">
-            <div className="bg-red-500 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-red-700 rounded-full p-1.5">
               <FaFistRaised />
             </div>
-            <h1>Grass</h1>
+            <h1>Fighting</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-yellow-500 rounded-full p-1.5">
               <AiFillThunderbolt />
             </div>
-            <h1>Grass</h1>
+            <h1>Electric</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-yellow-900 rounded-full p-1.5">
               <MdTerrain />
             </div>
-            <h1>Grass</h1>
+            <h1>Ground</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-stone-700 rounded-full p-1.5">
               <FaHillRockslide />
             </div>
-            <h1>Grass</h1>
+            <h1>Rock</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-cyan-500 rounded-full p-1.5">
               <MdOutlineSevereCold />
             </div>
-            <h1>Grass</h1>
+            <h1>Ice</h1>
           </div>
-          <div className="flex flex-row gap-1">
-            <div className="bg-gray-500 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-pink-500 rounded-full p-1.5">
               <GiAlienFire />
             </div>
-            <h1>Grass</h1>
+            <h1>Fairy</h1>
           </div>
-          <div className="flex flex-row gap-1">
-            <div className="bg-violet-700 rounded-full p-1.5">
+          <div className="flex flex-row gap-2">
+            <div className="bg-purple-900 rounded-full p-1.5">
               <BiSolidGhost />
             </div>
-            <h1>Grass</h1>
+            <h1>Ghost</h1>
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-2">
             <div className="bg-zinc-500 rounded-full p-1.5">
               <GiHexagonalNut />
             </div>
@@ -307,7 +307,7 @@ const Pokemon = ({ params }: any) => {
       </section>
 
       <div
-        className={`relative w-full lg:basis-3/4 rounded-r-3xl lg:bg-gradient-to-b from-[#040b1dbb] ${bgColor?.color} text-white lg:pl-10`}
+        className={`relative w-full lg:basis-3/4 rounded-3xl lg:rounded-l-none lg:rounded-r-3xl backdrop-blur-2xl bg-gradient-to-b from-[#040b1dbb] ${bgColor?.color} text-white lg:pl-10`}
       >
         <div className="flex flex-col lg:flex-row-reverse">
           <section className="basis-1/2">
@@ -348,7 +348,9 @@ const Pokemon = ({ params }: any) => {
                       key={index}
                       className={`w-24 flex flex-row justify-center items-center rounded-lg border ${resultColorBorder(
                         item.type.name
-                      )} py-1 text-xl mb-4 gap-2 ${resultColorText(item.type.name)} `}
+                      )} py-1 text-xl mb-4 gap-2 ${resultColorText(
+                        item.type.name
+                      )} `}
                     >
                       {resultIcon(item.type.name)}
                       <h1 className=" capitalize text-sm text-center font-semibold">
@@ -403,58 +405,52 @@ const Pokemon = ({ params }: any) => {
               </div>
             </section>
 
-            <h1 className="h-28 lg:h-0"></h1>
+            <h1 className="h-32 lg:h-0 "></h1>
           </section>
         </div>
-
-        <section className="hidden p-5 -mt-28 lg:mt-0">
-          <div className="flex flex-row px-5 mb-2">
-            <div className="w-32 bg-gray-700/20 rounded-lg ">
-              <div className="flex justify-center px-5">
-                <img
-                  className="w-full -mt-5 hover:scale-110"
-                  src={
-                    pokemon?.sprites?.other["official-artwork"]?.front_default
-                  }
-                  alt=""
-                />
-              </div>
-            </div>
-            <div className="pl-5">
-              <h1 className="text-sm text-gray-500">#001</h1>
-              <h1 className="font-semibold">Charmileon</h1>
-              <h1 className="text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">
-                Fire
-              </h1>
-            </div>
-          </div>
-
-          <div className="ml-5 w-16 h-16 border-r border-gray-500/30 mb-5">
-            {" "}
-          </div>
-
-          <div className="flex flex-row px-5">
-            <div className="w-32 bg-gray-500/10 rounded-lg ">
-              <div className="flex justify-center px-5">
-                <img
-                  className="w-full -mt-5 hover:scale-110"
-                  src={
-                    pokemon?.sprites?.other["official-artwork"]?.front_default
-                  }
-                  alt=""
-                />
-              </div>
-            </div>
-            <div className="pl-5">
-              <h1 className="text-gray-500">#002</h1>
-              <h1 className="font-semibold">Charizar</h1>
-              <div className="bg-transparent text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">
-                Fire
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
+
+      <section className="z-20 lg:hidden p-5 -mt-28 lg:mt-0">
+        <div className="flex flex-row px-5 mb-2">
+          <div className="w-32 bg-gray-400/40 rounded-lg ">
+            <div className="flex justify-center px-5">
+              <img
+                className="w-full -mt-5 hover:scale-110"
+                src={pokemon?.sprites?.other["official-artwork"]?.front_default}
+                alt=""
+              />
+            </div>
+          </div>
+          <div className="pl-5">
+            <h1 className="text-sm text-gray-300">#001</h1>
+            <h1 className="font-semibold">Charmileon</h1>
+            <h1 className="text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">
+              Fire
+            </h1>
+          </div>
+        </div>
+
+        <div className="ml-5 w-16 h-10 border-r border-gray-300/50 mb-5"> </div>
+
+        <div className="flex flex-row px-5">
+          <div className="w-32 bg-gray-400/40 rounded-lg ">
+            <div className="flex justify-center px-5">
+              <img
+                className="w-full -mt-5 hover:scale-110"
+                src={pokemon?.sprites?.other["official-artwork"]?.front_default}
+                alt=""
+              />
+            </div>
+          </div>
+          <div className="pl-5">
+            <h1 className="text-gray-300">#002</h1>
+            <h1 className="font-semibold">Charizar</h1>
+            <div className="bg-transparent text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">
+              Fire
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
