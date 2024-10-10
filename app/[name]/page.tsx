@@ -15,23 +15,30 @@ import {
 import { FaHillRockslide } from "react-icons/fa6";
 import { GiAlienFire, GiFluffyWing, GiHexagonalNut } from "react-icons/gi";
 import { ImFire } from "react-icons/im";
-import { IoIosBug } from "react-icons/io";
-import { MdOutlineSevereCold, MdTerrain, MdWaterDrop } from "react-icons/md";
+import { IoIosArrowBack, IoIosBug } from "react-icons/io";
+import {
+  MdArrowBackIos,
+  MdOutlineSevereCold,
+  MdTerrain,
+  MdWaterDrop,
+} from "react-icons/md";
 import { PiSpiralFill } from "react-icons/pi";
 import { URL_POKEMON, URL_SPECIES } from "../api/apiRest";
 import { CiDumbbell, CiRuler } from "react-icons/ci";
 import Evolution from "../components/Evolution";
+import Link from "next/link";
+import { FiSearch } from "react-icons/fi";
 
 const BackgroundColor = [
-  { name: "red", color: "to-red-500/30" },
-  { name: "pink", color: "to-pink-500/30" },
-  { name: "green", color: "to-green-500/30" },
-  { name: "blue", color: "to-sky-500/30" },
-  { name: "purple", color: "to-purple-500/30" },
-  { name: "yellow", color: "to-yellow-500/30" },
-  { name: "brown", color: "to-yellow-900" },
-  { name: "white", color: "to-white/30" },
-  { name: "gray", color: "to-gray-500/30" },
+  { name: "red", color: "to-red-500/20" },
+  { name: "pink", color: "to-pink-500/20" },
+  { name: "green", color: "to-green-500/20" },
+  { name: "blue", color: "to-sky-500/20" },
+  { name: "purple", color: "to-purple-500/20" },
+  { name: "yellow", color: "to-yellow-500/20" },
+  { name: "brown", color: "to-yellow-900/30" },
+  { name: "white", color: "to-white/20" },
+  { name: "gray", color: "to-gray-500/20" },
 ];
 
 const TypesColor = [
@@ -109,10 +116,12 @@ const Pokemon = ({ params }: any) => {
   //console.log(name);
   //let name2 = name.replace(/\b[a-z]/g, (c: any) => c.toUpperCase());
   //console.log(name2);
-
   const [pokemon, setPokemon] = useState(Pok); // id, nombre, foto, altura, peso, habilidades(Stats)
   const [especie, setEspecie] = useState(Pok); //
+  const [info, setInfo] = useState(""); //
   const [loading1, setLoading1] = useState(false);
+
+  //especie?.flavor_text_entries[26]?.flavor_text?.toLowerCase()
 
   useEffect(() => {
     setLoading1(false);
@@ -128,6 +137,7 @@ const Pokemon = ({ params }: any) => {
   useEffect(() => {
     const dataEspecie = async () => {
       const api = await axios.get(`${URL_SPECIES}/${name}`);
+      setInfo(api?.data?.flavor_text_entries[26]?.flavor_text);
       setEspecie(api.data);
     };
 
@@ -193,7 +203,7 @@ const Pokemon = ({ params }: any) => {
   };
 
   return (
-    <div className="relative lg:h-[600px] w-full lg:w-[1200px] m-10 lg:m-0 text-white flex flex-col lg:flex-row rounded-3xl Xbg-black/20 ">
+    <div className="relative lg:h-[600px] w-full lg:w-[1200px] text-white flex flex-col lg:flex-row rounded-3xl Xbg-black/20 ">
       <section className="hidden lg:block lg:basis-1/4 h-full flex-col bg-black/40 rounded-l-3xl backdrop-blur-2xl p-5">
         <h1 className="text-xl font-semibold">Types</h1>
         <h1 className="text-sm">All Pokemon</h1>
@@ -307,13 +317,13 @@ const Pokemon = ({ params }: any) => {
         </div>
       </section>
 
-      <div
-        className={`relative w-full lg:basis-3/4 rounded-3xl lg:rounded-l-none lg:rounded-r-3xl backdrop-blur-2xl bg-gradient-to-b from-[#040b1dbb] ${bgColor?.color} text-white lg:pl-10`}
+      <section
+        className={`Xrelative w-full lg:basis-3/4 rounded-3xl lg:rounded-l-none lg:rounded-r-3xl backdrop-blur-2xl bg-gradient-to-b from-[#040b1dbb] ${bgColor?.color} text-white lg:pl-10`}
       >
         <div className="flex flex-col lg:flex-row-reverse">
+          {/** IMAGEN - DERECHA */}
           <section className="basis-1/2">
-            <div className="flex pl-10 lg:pl-0 lg:-mx-10 -mt-10 justify-center">
-              {/** efecto de imagen minuto 107 */}
+            <div className="flex lg:-mx-10 -mt-10 justify-center">
               <img
                 className="w-full Xz-00 hover:scale-110"
                 src={pokemon?.sprites?.other["official-artwork"]?.front_default}
@@ -321,23 +331,38 @@ const Pokemon = ({ params }: any) => {
               />
             </div>
           </section>
-
-          <section className={` basis-1/2 lg:pt-5 lg:pr-10 `}>
-            <section className="text-center mb-5">
-              <div className="absolute top-5 left-5 w-16 rounded-lg text-gray-200 bg-red-700 flex flex-row items-center p-1 gap-1 mb-4">
-                <img
-                  src="https://www.freeiconspng.com/uploads/pokeball-icon-4.png"
-                  width="20"
-                  alt="Pokeball"
-                />
-                <h1 className="font-semibold">0{pokemon.id}</h1>
+          {/** DETALLE */}
+          <section className={`lg:relative basis-1/2 lg:pt-5 lg:pr-10 `}>
+            <section className="text-center mb-5 px-5 lg:px-0">
+              <div className="lg:absolute top-7 left-0 w-full flex flex-row justify-between  lg:pr-10 ">
+                <div className="flex flex-row gap-2">
+                  <Link href={`/`} className="bg-white/30 rounded-lg p-2">
+                    <IoIosArrowBack />
+                  </Link>
+                  <Link href={`/`} className="bg-white/30 rounded-lg p-2">
+                    <FiSearch />
+                  </Link>
+                </div>
+                <div className=" w-20 rounded-lg bg-gradient-to-br from-red-700 to-red-500 shadow-2xl shadow-red-500 flex flex-row items-center justify-evenly p-1 gap-1">
+                  <img
+                    src="https://www.freeiconspng.com/uploads/pokeball-icon-4.png"
+                    width="20"
+                    alt="Pokeball"
+                  />
+                  <h1 className="font-semibold text-gray-900 text-sm">
+                    0{pokemon.id}
+                  </h1>
+                </div>
               </div>
 
-              <h1 className="capitalize tracking-wider text-3xl mb-2">
+              <h1 className="capitalize tracking-wider text-3xl pt-4 mb-2 lg:pt-10 ">
                 {pokemon.name}
               </h1>
-              <h1 className="text-gray-300 text-sm capitalize">
-                {especie?.habitat?.name} Pokemon
+              <h1 className="text-gray-300 text-sm ">
+                {info} <br />{" "}
+                <span className="capitalize text-gray-400">
+                  Habitat: {especie?.habitat?.name}
+                </span>
               </h1>
             </section>
 
@@ -383,12 +408,12 @@ const Pokemon = ({ params }: any) => {
             </section>
 
             <section className="px-5 lg:px-0 mb-5">
-              <div className="w-full px-10 py-5 rounded-2xl bg-black/20">
+              <div className="w-full px-5 lg:px-10 py-5 rounded-2xl bg-black/20">
                 {pokemon?.stats?.map((item: any, index: any) => {
                   return (
                     <div key={index} className="mb-2">
                       <div className=" w-full flex flex-row items-center justify-between gap-3">
-                        <h1 className="w-56 text-gray-200 capitalize">
+                        <h1 className=" w-full text-gray-200 capitalize Xlg:whitespace-nowrap">
                           {item.stat.name}
                         </h1>
                         <h1 className="w-12 font-semibold text-end">
@@ -397,7 +422,7 @@ const Pokemon = ({ params }: any) => {
                         <progress
                           value={item.base_stat}
                           max={110}
-                          className="w-full h-2"
+                          className="w-14 lg:w-32 h-2"
                         />
                       </div>
                     </div>
@@ -409,52 +434,10 @@ const Pokemon = ({ params }: any) => {
             <h1 className="h-32 lg:h-0 "></h1>
           </section>
         </div>
-      </div>
-
-      <section className="z-20 lg:hidden p-5 -mt-28 lg:mt-0">
-        <div className="flex flex-row px-5 mb-2">
-          <div className="w-32 bg-gray-400/40 rounded-lg ">
-            <div className="flex justify-center px-5">
-              <img
-                className="w-full -mt-5 hover:scale-110"
-                src={pokemon?.sprites?.other["official-artwork"]?.front_default}
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="pl-5">
-            <h1 className="text-sm text-gray-300">#001</h1>
-            <h1 className="font-semibold">Charmileon</h1>
-            <h1 className="text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">
-              Fire
-            </h1>
-          </div>
-        </div>
-
-        <div className="ml-5 w-16 h-10 border-r border-gray-300/50 mb-5"> </div>
-
-        <div className="flex flex-row px-5">
-          <div className="w-32 bg-gray-400/40 rounded-lg ">
-            <div className="flex justify-center px-5">
-              <img
-                className="w-full -mt-5 hover:scale-110"
-                src={pokemon?.sprites?.other["official-artwork"]?.front_default}
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="pl-5">
-            <h1 className="text-gray-300">#002</h1>
-            <h1 className="font-semibold">Charizar</h1>
-            <div className="bg-transparent text-sm px-5 py-1 rounded-md border border-orange-500 text-orange-500 shadow-2xl shadow-orange-500">
-              Fire
-            </div>
-          </div>
-        </div>
       </section>
 
-      <section className="absolute bottom-10 right-10">
-        <Evolution poke={especie}  />
+      <section className="z-20 lg:absolute bottom-10 right-5 p-5 -mt-28 lg:mt-0">
+        <Evolution poke={especie} />
       </section>
     </div>
   );

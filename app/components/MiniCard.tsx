@@ -24,14 +24,14 @@ import { TfiArrowsCorner } from "react-icons/tfi";
 
 const BackgroundColor = [
   { name: "red", color: "to-red-500/20" },
-  { name: "pink", color: "to-pink-500/20" },
-  { name: "green", color: "to-green-500/20" },
   { name: "blue", color: "to-sky-500/20" },
-  { name: "purple", color: "to-purple-500/20" },
-  { name: "yellow", color: "to-yellow-500/20" },
-  { name: "brown", color: "to-yellow-900" },
+  { name: "green", color: "to-green-500/20" },
   { name: "white", color: "to-white/50" },
   { name: "gray", color: "to-gray-500/20" },
+  { name: "yellow", color: "to-yellow-500/20" },
+  { name: "brown", color: "to-yellow-900/30" },
+  { name: "pink", color: "to-pink-500/20" },
+  { name: "purple", color: "to-purple-500/20" },
 ];
 
 const TypesColor = [
@@ -141,7 +141,7 @@ const MiniCard = ({ data }: any) => {
   return (
     <div className="flex flex-col justify-center pokemons-center mb-5 Xbg-red-400 ">
       <div
-        className={`relative w-full bg-gradient-to-b from-[#040b1d] ${bgColor?.color} rounded-3xl border border-gray-500/50`}
+        className={`relative w-full bg-gradient-to-t from-[#040b1d11] ${bgColor?.color} rounded-3xl border border-gray-500/30`}
       >
         <div className="pr-10 ">
           {/** efecto de imagen minuto 107 */}
