@@ -144,25 +144,25 @@ const Pokemon = ({ params }: any) => {
                   <h1 className="text-lg font-semibold">
                     {(Number(pokemon.height) * 0.1).toFixed(1)} M
                   </h1>
-                  <div className="flex flex-row justify-center items-center gap-1">
+                  <div className="flex flex-row justify-center items-center text-gray-300 gap-1">
                     <CgRuler />
-                    <h1 className="text-sm text-gray-300"> Height</h1>
+                    <h1 className="text-sm "> Height</h1>
                   </div>
                 </div>
                 <div className="text-center">
                   <h1 className="text-lg font-semibold">{pokemon.weight} KG</h1>
-                  <div className="flex flex-row justify-center items-center gap-1">
+                  <div className="flex flex-row justify-center items-center text-gray-300 gap-1">
                     <RiWeightLine />
-                    <h1 className="text-sm text-gray-300"> Weight</h1>
+                    <h1 className="text-sm"> Weight</h1>
                   </div>
                 </div>
                 <div className="text-center">
                   <h1 className="text-lg font-semibold capitalize">
                     {especie?.habitat?.name} &nbsp;
                   </h1>
-                  <div className="flex flex-row justify-center items-center gap-1">
+                  <div className="flex flex-row justify-center items-center text-gray-300 gap-1">
                     <RiHomeLine />
-                    <h1 className="text-sm text-gray-300"> Habitat</h1>
+                    <h1 className="text-sm"> Habitat</h1>
                   </div>
                 </div>
 

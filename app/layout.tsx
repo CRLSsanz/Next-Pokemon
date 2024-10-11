@@ -1,6 +1,24 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import {
+  Barlow_Condensed, //para mucho texto y numeros
+  Orbitron,
+  Rubik_Doodle_Shadow, //titulos weight:400
+  Allerta_Stencil,
+  //Megrim, // minuscula imprenta egipcio
+  Gugi, //Titulo mayuscula
+  //Stick, //PAra game
+  Text_Me_One,
+} from "next/font/google";
+
+
+const inter = Text_Me_One({
+  weight: ["400"],
+  style: ["normal"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`$ {geistSans.variable} $ {geistMono.variable} antialiased ${inter.className}`}
       >
         <div className="bg-cover bg-fixed bg-[0%] bg-[url('https://wallpapercave.com/wp/wp10742481.jpg')] min-h-screen">
           <div className="w-full h-full lg:h-screen p-5 lg:p-0 flex lg:items-center justify-center ">{children}</div>
