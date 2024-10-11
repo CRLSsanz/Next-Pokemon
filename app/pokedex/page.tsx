@@ -1,17 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { URL_POKEMON } from "@/app/api/apiRest";
-import {
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
-import Search from "./components/Search";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Search from "../components/Search";
 import axios from "axios";
-import MiniCard from "./components/MiniCard";
-import Types from "./components/Types";
+import MiniCard from "../components/MiniCard";
+import Types from "../components/Types";
 import Link from "next/link";
-
+import { useEffect, useState } from "react";
+import MicroCard from "../components/MicroCard";
 const Pok: any = [];
 
 type Poke = {
@@ -21,15 +18,15 @@ type Poke = {
 
 const initialState: Poke[] = [];
 
-export default function Home() {
+const Pokedex = () => {
   const [arrayPokemon, setArrayPokemon] = useState(initialState);
   const [globalPokemon, setGlobalPokemon] = useState([Pok]);
   const [search, setSearch] = useState("");
-  const [xpage, setXpage] = useState(1);
+  const [xpage, setXpage] = useState(2);
 
   useEffect(() => {
     const api = async () => {
-      const limit = 12;
+      const limit = 32;
       const xp = (xpage - 1) * limit;
       const apiPoke = await axios.get(
         `${URL_POKEMON}/?offset=${xp}&limit=${limit}`
@@ -73,22 +70,32 @@ export default function Home() {
 
       <section className="w-full lg:basis-3/4">
         <div className="p-5">
-          <h1 className="text-xl font-semibold">Good morning, Charlie </h1>
-          <h1 className="text-sm text-gray-200">List Pokemons</h1>
-          <h1 className="text-3xl font-semibold py-5">
-            What Pokemon are you looking for?{" "}
-          </h1>
+          <h1 className="text-xl font-semibold mb-5">Pokedex </h1>
 
-          <Search obtenerSearch={obtenerSearch} />
+          <div className="flex flex-row gap-4 mb-5">
+            <select
+              name=""
+              id=""
+              className="w-full bg-gray-800/50 rounded-full p-2 pl-12 border border-gray-500/50"
+            >
+              <option value="">Gen 1</option>
+              <option value="">Gen 2</option>
+              <option value="">Gen 3</option>
+              <option value="">Gen 4</option>
+              <option value="">Gen 5</option>
+            </select>
+            <Search obtenerSearch={obtenerSearch} />
+          </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 mt-10">
+          <div className=" Xbg-red-300 grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-x-2 gap-y-5 py-5 Xborder border-gray-200/40 rounded-3xl">
             {filterPokemons?.map((items, index) => (
-              <MiniCard key={index} data={items} />
+              <MicroCard key={index} data={items} />
             ))}
           </div>
 
-          <div className="flex flex-row items-center justify-center gap-x-4">
-            <span
+          {/** PAGINACION NAVEGACION */}
+          <div className="flex flex-row items-center justify-center gap-x-4 ">
+            <span className="z-20 bg-black/40 rounded-md cursor-pointer p-2"
               onClick={() => {
                 if (xpage === 1) {
                   return console.log("No pueder regresar");
@@ -100,8 +107,8 @@ export default function Home() {
             </span>
             <span>{xpage}</span>
             <span>de</span>
-            <span>{Math.round(globalPokemon?.length / 12)}</span>
-            <span
+            <span>{Math.round(globalPokemon?.length / 32)}</span>
+            <span className="z-20 bg-black/40 rounded-md cursor-pointer p-2"
               onClick={() => {
                 if (xpage === 67) {
                   return console.log("es el ultimo");
@@ -112,15 +119,10 @@ export default function Home() {
               <FaChevronRight />
             </span>
           </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <Link href={`/pokedex`} className="rounded-xl px-3 py-5 bg-gradient-to-br from-green-700/70 to-green-500 ">Pokedex</Link>
-            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-red-700/70 to-red-500 ">Generations</div>
-            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-blue-700/70 to-blue-500 ">Types</div>
-            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-yellow-700/70 to-yellow-500 ">Species</div>
-          </div>
         </div>
       </section>
     </div>
   );
-}
+};
+
+export default Pokedex;
