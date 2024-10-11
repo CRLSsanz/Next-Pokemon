@@ -9,11 +9,12 @@ import {
   //Megrim, // minuscula imprenta egipcio
   Gugi, //Titulo mayuscula
   //Stick, //PAra game
-  Text_Me_One,
+  Text_Me_One,Josefin_Sans, Poiret_One, Abel, Raleway, Jost,Roboto, Comfortaa,
+  Montserrat, Outfit
 } from "next/font/google";
 
 
-const inter = Text_Me_One({
+const inter = Outfit({
   weight: ["400"],
   style: ["normal"],
   subsets: ["latin"],

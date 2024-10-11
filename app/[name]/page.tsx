@@ -90,6 +90,7 @@ const Pokemon = ({ params }: any) => {
           </section>
           {/** DETALLE */}
           <section className={`lg:relative basis-1/2 lg:pt-5 lg:pr-10 `}>
+            {/** NOMBRE - INFO */}
             <section className="text-center mb-5 px-5 lg:px-0">
               <div className="lg:absolute top-7 left-0 w-full flex flex-row justify-between  lg:pr-10 ">
                 <div className="flex flex-row gap-2">
@@ -117,7 +118,7 @@ const Pokemon = ({ params }: any) => {
               </h1>
               <h1 className="text-gray-300 text-sm mb-5">{info}</h1>
             </section>
-
+            {/** TYPES - ICONS */}
             <section>
               <div className="flex flex-row justify-center gap-4">
                 {pokemon?.types?.map((item: any, index: any) => {
@@ -138,7 +139,7 @@ const Pokemon = ({ params }: any) => {
                   );
                 })}
               </div>
-
+              {/** TALLA PESO GENERACION */}
               <div className="w-full grid grid-cols-3 gap-y-4 text-white py-5 mb-5">
                 <div className="text-center">
                   <h1 className="text-lg font-semibold">
@@ -179,7 +180,7 @@ const Pokemon = ({ params }: any) => {
                 <div className="text-center">
                   <h1 className="text-lg font-semibold capitalize">
                     {especie?.pal_park_encounters?.map(
-                      (item: any) => item.area.name
+                      (item: any) => item.area.namepal_park_encounters
                     )}
                     &nbsp;
                   </h1>
@@ -208,21 +209,21 @@ const Pokemon = ({ params }: any) => {
                   return (
                     <div key={index} className="mb-1">
                       <div className=" w-full flex flex-row items-center justify-between gap-x-6">
-                        <h1 className=" w-full text-gray-300 capitalize Xlg:whitespace-nowrap">
+                        <h1 className="w-28 text-gray-300 capitalize Xlg:whitespace-nowrap">
                           {item.stat.name === "special-attack"
                             ? "sp. atk"
                             : item.stat.name === "special-defense"
                             ? "sp. def"
                             : item.stat.name}
                         </h1>
-                        <h1 className="w-10 font-semibold text-end">
+                        <h1 className="w-12 font-semibold text-end">
                           {item.base_stat}
                         </h1>
                         <progress
                           value={item.base_stat}
                           max={110}
-                          style={{ color:"yellow" }}
-                          className="w-36 lg:w-32 h-1.5 bg-gray-500/30 rounded-full "
+                          style={{ color: "yellow" }}
+                          className="w-full h-1.5 bg-gray-400/10 rounded-full "
                         />
                       </div>
                     </div>
