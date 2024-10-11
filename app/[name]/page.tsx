@@ -2,34 +2,17 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { AiFillThunderbolt } from "react-icons/ai";
-import { BiSolidGhost } from "react-icons/bi";
-import {
-  FaCircleNotch,
-  FaDragon,
-  FaFire,
-  FaFistRaised,
-  FaLeaf,
-  FaSkull,
-} from "react-icons/fa";
-import { FaHillRockslide } from "react-icons/fa6";
-import { GiAlienFire, GiFluffyWing, GiHexagonalNut } from "react-icons/gi";
-import { ImFire } from "react-icons/im";
 import { IoIosArrowBack, IoIosBug } from "react-icons/io";
-import {
-  MdOutlineSevereCold,
-  MdTerrain,
-  MdWaterDrop,
-} from "react-icons/md";
-import { PiSpiralFill } from "react-icons/pi";
 import { URL_POKEMON, URL_SPECIES } from "../api/apiRest";
-import { CiDumbbell, CiRuler } from "react-icons/ci";
+import { CiRuler } from "react-icons/ci";
 import Evolution from "../components/Evolution";
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
 import { BackgroundColor, TypesColor } from "../components/Colors";
 import Icons from "../components/Icons";
 import Types from "../components/Types";
+import { RiHomeLine, RiWeightLine } from "react-icons/ri";
+import { CgRuler } from "react-icons/cg";
 
 const Pok: any = [];
 
@@ -97,7 +80,7 @@ const Pokemon = ({ params }: any) => {
         <div className="flex flex-col lg:flex-row-reverse">
           {/** IMAGEN - DERECHA */}
           <section className="basis-1/2">
-            <div className="flex lg:-mr-10 -mt-10 justify-center">
+            <div className="flex px-10 lg:px-0 lg:-mr-10 -mt-10 lg:-mt-10 justify-center">
               <img
                 className="w-full Xz-00 hover:scale-110"
                 src={pokemon?.sprites?.other["official-artwork"]?.front_default}
@@ -132,12 +115,7 @@ const Pokemon = ({ params }: any) => {
               <h1 className="capitalize tracking-wider text-3xl pt-4 mb-2 lg:pt-10 ">
                 {pokemon.name}
               </h1>
-              <h1 className="text-gray-300 text-sm ">
-                {info} <br />{" "}
-                <span className="capitalize text-gray-400">
-                  Habitat: {especie?.habitat?.name}
-                </span>
-              </h1>
+              <h1 className="text-gray-300 text-sm mb-5">{info}</h1>
             </section>
 
             <section>
@@ -161,42 +139,90 @@ const Pokemon = ({ params }: any) => {
                 })}
               </div>
 
-              <div className="w-full flex flex-row justify-evenly text-white mb-5">
+              <div className="w-full grid grid-cols-3 gap-y-4 text-white py-5 mb-5">
                 <div className="text-center">
-                  <h1 className="text-xl font-semibold">
+                  <h1 className="text-lg font-semibold">
                     {(Number(pokemon.height) * 0.1).toFixed(1)} M
                   </h1>
-                  <div className="flex flex-row justify-center items-center gap-x-1">
-                    <CiRuler />
-                    <h1 className="text-sm"> Altura</h1>
+                  <div className="flex flex-row justify-center items-center gap-1">
+                    <CgRuler />
+                    <h1 className="text-sm text-gray-300"> Height</h1>
                   </div>
                 </div>
                 <div className="text-center">
-                  <h1 className="text-xl font-semibold">{pokemon.weight} KG</h1>
+                  <h1 className="text-lg font-semibold">{pokemon.weight} KG</h1>
                   <div className="flex flex-row justify-center items-center gap-1">
-                    <CiDumbbell />
-                    <h1 className="text-sm"> Peso</h1>
+                    <RiWeightLine />
+                    <h1 className="text-sm text-gray-300"> Weight</h1>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <h1 className="text-lg font-semibold capitalize">
+                    {especie?.habitat?.name} &nbsp;
+                  </h1>
+                  <div className="flex flex-row justify-center items-center gap-1">
+                    <RiHomeLine />
+                    <h1 className="text-sm text-gray-300"> Habitat</h1>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <h1 className="text-lg font-semibold capitalize">
+                    {especie?.color?.name}
+                  </h1>
+                  <div className="flex flex-row justify-center items-center gap-1">
+                    <span></span>
+                    <h1 className="text-sm text-gray-300"> Color</h1>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <h1 className="text-lg font-semibold capitalize">
+                    {especie?.pal_park_encounters?.map(
+                      (item: any) => item.area.name
+                    )}
+                    &nbsp;
+                  </h1>
+                  <div className="flex flex-row justify-center items-center gap-1">
+                    <span></span>
+                    <h1 className="text-sm text-gray-300"> Encounters</h1>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <h1 className="text-lg font-semibold uppercase">
+                    {"G-"}
+                    {especie?.generation?.name.substr(11)}
+                  </h1>
+                  <div className="flex flex-row justify-center items-center gap-1">
+                    <span></span>
+                    <h1 className="text-sm text-gray-300"> Generation</h1>
                   </div>
                 </div>
               </div>
             </section>
-
-            <section className="px-5 lg:px-0 mb-5">
+            {/** STATS */}
+            <section className="px-5 lg:px-0 mb-10">
+              <h1 className="font-semibold mb-2">Statistics</h1>
               <div className="w-full px-5 lg:px-10 py-5 rounded-2xl bg-black/20">
                 {pokemon?.stats?.map((item: any, index: any) => {
                   return (
-                    <div key={index} className="mb-2">
-                      <div className=" w-full flex flex-row items-center justify-between gap-3">
-                        <h1 className=" w-full text-gray-200 capitalize Xlg:whitespace-nowrap">
-                          {item.stat.name}
+                    <div key={index} className="mb-1">
+                      <div className=" w-full flex flex-row items-center justify-between gap-x-6">
+                        <h1 className=" w-full text-gray-300 capitalize Xlg:whitespace-nowrap">
+                          {item.stat.name === "special-attack"
+                            ? "sp. atk"
+                            : item.stat.name === "special-defense"
+                            ? "sp. def"
+                            : item.stat.name}
                         </h1>
-                        <h1 className="w-12 font-semibold text-end">
+                        <h1 className="w-10 font-semibold text-end">
                           {item.base_stat}
                         </h1>
                         <progress
                           value={item.base_stat}
                           max={110}
-                          className="w-14 lg:w-32 h-2"
+                          style={{ color:"yellow" }}
+                          className="w-36 lg:w-32 h-1.5 bg-gray-500/30 rounded-full "
                         />
                       </div>
                     </div>
@@ -205,12 +231,14 @@ const Pokemon = ({ params }: any) => {
               </div>
             </section>
 
-            <h1 className="h-32 lg:h-0 "></h1>
+            <h1 className="h-64 lg:h-0 "></h1>
           </section>
         </div>
       </section>
 
-      <section className="z-20 lg:absolute bottom-10 right-5 p-5 -mt-28 lg:mt-0">
+      <section className="z-20 lg:absolute bottom-10 right-5 p-5 -mt-72 lg:mt-0">
+        <h1 className="lg:hidden font-semibold mb-5">Evolutions</h1>
+
         <Evolution poke={especie} />
       </section>
     </div>
