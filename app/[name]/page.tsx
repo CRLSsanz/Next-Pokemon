@@ -17,7 +17,7 @@ import { CgRuler } from "react-icons/cg";
 const Pok: any = [];
 
 const Pokemon = ({ params }: any) => {
-  const name = params.name.replaceAll("-", " ");
+  const name = params.name.replaceAll("-", "-");
   //console.log(name);
   //let name2 = name.replace(/\b[a-z]/g, (c: any) => c.toUpperCase());
   //console.log(name2);
