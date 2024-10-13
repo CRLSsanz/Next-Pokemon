@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import MicroCard from "../components/MicroCard";
 import { Generations } from "../components/Generation";
 import { TbPokeball } from "react-icons/tb";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Pok: any = [];
 
@@ -26,16 +27,20 @@ interface Gen {
   alias: string;
   count: string;
 }
+const gene: Gen = {
+  name: "generation-iv",
+  alias: "Generation 4",
+  initial: "387",
+  count: "107",
+};
 
 const Pokedex = () => {
   const [arrayPokemon, setArrayPokemon] = useState(initialState);
   const [globalPokemon, setGlobalPokemon] = useState([Pok]);
   const [search, setSearch] = useState("");
-  //const [generation, setGeneration] = useState({ name: "generation-iv", alias: "Generation 4", initial:"387",count: "107" });
-  const [generation, setGeneration] = useState<Gen>();
+  const [generation, setGeneration] = useState<Gen>(gene);
   const [xpage, setXpage] = useState(1);
   const countCard = 24;
-  //console.log(generation);
 
   useEffect(() => {
     /*const api = async () => {
@@ -100,7 +105,7 @@ const Pokedex = () => {
   };
 
   const obtenerGeneracion = (e: any) => {
-    const obj=Generations.find((item) => item.name === e);
+    const obj = Generations.find((item) => item.name === e) || gene;
     //console.log(obj);
     setGeneration(obj);
     setXpage(1);
@@ -112,7 +117,7 @@ const Pokedex = () => {
       : arrayPokemon;
 
   return (
-    <div className="lg:h-[600px] w-[1200px] text-white flex flex-row rounded-3xl bg-black/40 backdrop-blur-2xl ">
+    <div className="lg:h-[600px] w-[1200px] text-white flex flex-row rounded-3xl bg-black/50 backdrop-blur-2xl ">
       <section className="hidden lg:block lg:basis-1/4 h-full flex-col bg-black/40 rounded-l-3xl backdrop-blur-2xl p-5">
         <h1 className="text-xl font-semibold">Types</h1>
         <h1 className="text-sm">All Pokemon</h1>
@@ -121,9 +126,14 @@ const Pokedex = () => {
 
       <section className="w-full lg:basis-3/4">
         <div className="p-5">
-          <h1 className="text-xl font-semibold mb-5">Pokedex </h1>
+          <div className="flex flex-row justify-between items-center">
+            <h1 className="text-xl font-semibold Xmb-5">Pokedex </h1>
+            <Link href={`/`} className="bg-white/30 rounded-lg p-2">
+              <AiOutlineClose />
+            </Link>
+          </div>
 
-          <div className="flex flex-row gap-4 mb-5">
+          <div id="up" className="flex flex-row gap-4 py-5">
             <select
               onChange={(e) => {
                 obtenerGeneracion(e.target.value);
@@ -131,7 +141,7 @@ const Pokedex = () => {
               defaultValue={generation?.name}
               name=""
               id=""
-              className="w-full bg-gray-800/50 rounded-full p-2 pl-12 border border-gray-500/50"
+              className="w-full bg-gray-800/50 rounded-full p-2 px-6 border border-gray-500/50"
             >
               {Generations.map((item, index) => (
                 <option key={index} value={item.name}>
@@ -143,10 +153,19 @@ const Pokedex = () => {
           </div>
 
           <div className="flex flex-row items-center">
-            <h1 className="px-3">List Pokemon </h1>
-            <TbPokeball />
-            <h1 className="pl-2 font-semibold">
-              {Number(generation?.initial) + (xpage - 1) * countCard} {" - "}{" "}
+            <span className="hidden pl-3 pr-1">
+              {"G-"}
+              {generation?.alias.substr(11)}
+            </span>
+            <span className="pl-2 text-gray-400 text-sm">Total </span>
+            <span className="flex flex-row items-center border border-gray-500 rounded-full px-4 mx-1">
+              {generation?.count}
+            </span>
+            <span className="text-gray-400 pl-5 text-sm">Range</span>
+
+            <h1 className="flex flex-row items-center border border-gray-500 rounded-full px-4 mx-1">
+              {Number(generation?.initial) + (xpage - 1) * countCard}
+              &nbsp; <TbPokeball /> &nbsp;
               {Number(generation?.initial) +
                 (xpage - 1) * countCard +
                 filterPokemons.length -
@@ -162,7 +181,8 @@ const Pokedex = () => {
 
           {/** PAGINACION NAVEGACION */}
           <div className="flex flex-row items-center justify-center gap-x-4 ">
-            <span
+            <Link
+              href="/pokedex#up"
               className="z-20 bg-black/40 rounded-md cursor-pointer p-2"
               onClick={() => {
                 if (xpage === 1) {
@@ -172,21 +192,22 @@ const Pokedex = () => {
               }}
             >
               <FaChevronLeft />
-            </span>
+            </Link>
             <span>{xpage}</span>
             <span>de </span>
             <span>{Math.ceil(Number(generation?.count) / countCard)}</span>
-            <span
+            <Link
+              href="/pokedex#up"
               className="z-20 bg-black/40 rounded-md cursor-pointer p-2"
               onClick={() => {
-                if (xpage === 67) {
+                if (xpage >= Number(generation?.count) / countCard) {
                   return console.log("es el ultimo");
                 }
                 setXpage(xpage + 1);
               }}
             >
               <FaChevronRight />
-            </span>
+            </Link>
           </div>
         </div>
       </section>

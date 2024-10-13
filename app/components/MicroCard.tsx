@@ -12,21 +12,21 @@ const Pok: any = [];
 
 const MicroCard = ({ data }: any) => {
   const [pokemon, setPokemon] = useState(Pok); // id, nombre, foto, altura, peso, habilidades(Stats)
-  const [especie, setEspecie] = useState(Pok); // 
-  
+  const [especie, setEspecie] = useState(Pok); //
+
   const [show, setShow] = useState(false);
   const [loading1, setLoading1] = useState(false);
+  const [loading2, setLoading2] = useState(false);
 
   useEffect(() => {
-    setLoading1(false);
+    //setLoading1(false);
     const dataPokemon = async () => {
       if (typeof data?.name !== "undefined") {
         const api = await axios.get(`${URL_POKEMON}/${data?.name}`);
         setPokemon(api.data);
       }
     };
-
-    setLoading1(true);
+        //setLoading1(true);
     dataPokemon();
   }, [data]);
 
@@ -39,6 +39,7 @@ const MicroCard = ({ data }: any) => {
   }, [show]);
 
   useEffect(() => {
+    setLoading2(false);
     const dataEspecie = async () => {
       let url_id = data?.url?.split("/"); // confierte a un array separando por el /
       if (typeof url_id !== "undefined") {
@@ -46,13 +47,21 @@ const MicroCard = ({ data }: any) => {
         setEspecie(api.data);
       }
     };
-
     dataEspecie();
+
+    setLoading2(true);
   }, [data]);
 
   const bgColor = BackgroundColor.find(
     ({ name }) => name === especie?.color?.name
   );
+
+  if (loading2 !== true)
+    return (
+      <div className="w-full h-12 Xbg-red-500 text-center">
+        <span className=" "> Load </span>
+      </div>
+    );
 
   return (
     <div className="relative select-none flex flex-col items-center justify-around Xbg-white/5 Xmb-5">
@@ -60,12 +69,14 @@ const MicroCard = ({ data }: any) => {
         <img
           onClick={() => setShow(true)}
           className=" cursor-pointer w-full hover:scale-110 pt-5"
-          src={pokemon?.sprites?.other["official-artwork"]?.front_default }//front_default
+          src={pokemon?.sprites?.other["official-artwork"]?.front_default} //front_default
           alt=""
         />
       </div>
       <div
-        className={`z-0 w-full flex flex-col xbg-black/30 bg-gradient-to-b from-white/0 ${bgColor?.color}  -mt-6 rounded-md transform transition-all duration-300 ${
+        className={`z-0 w-full flex flex-col xbg-black/30 bg-gradient-to-b from-white/0 ${
+          bgColor?.color
+        }  -mt-6 rounded-md transform transition-all duration-300 ${
           show
             ? " h-20 p-2 Xborder Xborder-gray-500/50 "
             : " h-0 text-transparent mb-5"

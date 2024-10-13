@@ -1,5 +1,5 @@
 export const BackgroundColor = [
-  { name: "red", color: "to-red-500/50" },
+  { name: "red", color: "to-red-500/30" },
   { name: "pink", color: "to-pink-500/20" },
   { name: "green", color: "to-green-500/20" },
   { name: "blue", color: "to-sky-500/40" },
