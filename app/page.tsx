@@ -24,15 +24,15 @@ const initialState: Poke[] = [];
 export default function Home() {
   const [arrayPokemon, setArrayPokemon] = useState(initialState);
   const [globalPokemon, setGlobalPokemon] = useState([Pok]);
-  const [search, setSearch] = useState("mew");
+  const [search, setSearch] = useState(""); //"mew"
   const [xpage, setXpage] = useState(1);
 
   useEffect(() => {
     const api = async () => {
-      const limit = 12;
-      const xp = (xpage - 1) * limit;
+      const limit =  150; //12;
+      const xp = 10080; //(xpage - 1) * limit;
       const apiPoke = await axios.get(
-        `${URL_POKEMON}/?offset=${xp}&limit=${limit}`
+        `${URL_POKEMON}/?offset=${xp}&limit=${limit}` 
       );
       setArrayPokemon(apiPoke.data.results);
     };
@@ -42,7 +42,7 @@ export default function Home() {
   }, [xpage]);
 
   const getGlobalPokemons = async () => {
-    const res = await axios.get(`${URL_POKEMON}/?offset=0&limit=1000`);
+    const res = await axios.get(`${URL_POKEMON}/?offset=0&limit=10240`);
     const promises = res.data.results.map((pokemon: any) => {
       return pokemon;
     });
@@ -61,7 +61,7 @@ export default function Home() {
   const filterPokemons =
     search?.length > 2
       ? globalPokemon?.filter((pokemon) => pokemon?.name?.includes(search))
-      : [] //arrayPokemon
+      : arrayPokemon
 
   return (
     <div className="lg:h-[600px] w-[1200px] text-white flex flex-row rounded-3xl bg-black/40 backdrop-blur-2xl ">

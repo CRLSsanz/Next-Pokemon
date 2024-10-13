@@ -1,9 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { URL_POKEMON, URL_SPECIES } from "../api/apiRest";
-import {
-  FaRegHeart,
-} from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 import Link from "next/link";
 import { TfiArrowsCorner } from "react-icons/tfi";
 import { BackgroundColor, TypesColor } from "./Colors";
@@ -19,8 +17,9 @@ const MiniCard = ({ data }: any) => {
   useEffect(() => {
     setLoading1(false);
     const dataPokemon = async () => {
+      let url_id = data?.url?.split("/");
       if (typeof data?.name !== "undefined") {
-        const api = await axios.get(`${URL_POKEMON}/${data?.name}`);
+        const api = await axios.get(`${URL_POKEMON}/${url_id[6]}`);
         setPokemon(api.data);
       }
     };
@@ -66,9 +65,7 @@ const MiniCard = ({ data }: any) => {
         </div>
 
         <div className="pb-4 px-4">
-          <h1 className="capitalize font-semibold mb-2">
-            {pokemon.name}
-          </h1>
+          <h1 className="capitalize font-semibold mb-2">{pokemon.name}</h1>
 
           <div className="flex flex-row gap-2">
             {pokemon?.types?.map((item: any, index: any) => {
@@ -86,6 +83,7 @@ const MiniCard = ({ data }: any) => {
           </div>
         </div>
 
+        <div className="absolute bottom-2 right-2 ">{pokemon.id}</div>
         <div className="absolute top-2 right-2 flex flex-col gap-2">
           <Link
             href={`/${data?.name.replaceAll(" ", "-").toLowerCase()}#view`}

@@ -69,7 +69,7 @@ const MicroCard = ({ data }: any) => {
         <img
           onClick={() => setShow(true)}
           className=" cursor-pointer w-full hover:scale-110 pt-5"
-          src={pokemon?.sprites?.other["official-artwork"]?.front_default} //front_default
+          src={pokemon?.sprites?.other["showdown"]?.front_default || pokemon?.sprites?.other["official-artwork"]?.front_default} //  official-artwork/front_default
           alt=""
         />
       </div>
