@@ -37,7 +37,7 @@ const gene: Gen = {
   count: "151",
 };
 
-const Pokedex = (type: string, generacion: string) => {
+const Pokedex = () => {
   const { pokemons, getNextUrl, morePokemons } = usePokemons();
   const [generation, setGeneration] = useState<Gen>(gene);
   const [search, setSearch] = useState("");
