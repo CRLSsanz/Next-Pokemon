@@ -7,8 +7,6 @@ import axios from "axios";
 import MiniCard from "./components/MiniCard";
 import Types from "./components/Types";
 import Link from "next/link";
-import usePokemons from "./hooks/usePokemons";
-import Card from "./components/Card";
 
 const Pok: any = [];
 
@@ -20,7 +18,6 @@ type Poke = {
 const initialState: Poke[] = [];
 
 export default function Home() {
-  const { pokemons, getNextUrl, morePokemons } = usePokemons();
   const [globalPokemon, setGlobalPokemon] = useState([Pok]);
   const [search, setSearch] = useState("mew"); //mew
   const [xpage, setXpage] = useState(1);

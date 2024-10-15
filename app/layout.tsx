@@ -4,9 +4,7 @@ import "./globals.css";
 import {
   Barlow_Condensed, //para mucho texto y numeros
   Orbitron,
-  Rubik_Doodle_Shadow, //titulos weight:400
   Allerta_Stencil,
-  //Megrim, // minuscula imprenta egipcio
   Gugi, //Titulo mayuscula
   //Stick, //PAra game
   Text_Me_One,Josefin_Sans, Poiret_One, Abel, Raleway, Jost,Roboto, Comfortaa,
