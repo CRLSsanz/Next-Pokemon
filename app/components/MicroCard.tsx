@@ -7,28 +7,19 @@ import { MdCatchingPokemon } from "react-icons/md";
 import { TbPokeball } from "react-icons/tb";
 import { CgPokemon } from "react-icons/cg";
 import { BackgroundColor } from "./Colors";
+import { PokemonListType } from "../interfaces/interfaces";
 
 const Pok: any = [];
 
-const MicroCard = ({ data }: any) => {
-  const [pokemon, setPokemon] = useState(Pok); // id, nombre, foto, altura, peso, habilidades(Stats)
+type PokemonType ={
+  pokemon: PokemonListType
+};
+
+const MicroCard = ({ pokemon }: PokemonType) => {
   const [especie, setEspecie] = useState(Pok); //
 
   const [show, setShow] = useState(false);
-  const [loading1, setLoading1] = useState(false);
-  const [loading2, setLoading2] = useState(false);
-
-  useEffect(() => {
-    //setLoading1(false);
-    const dataPokemon = async () => {
-      if (typeof data?.name !== "undefined") {
-        const api = await axios.get(`${URL_POKEMON}/${data?.name}`);
-        setPokemon(api.data);
-      }
-    };
-        //setLoading1(true);
-    dataPokemon();
-  }, [data]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (show === true) {
@@ -39,27 +30,24 @@ const MicroCard = ({ data }: any) => {
   }, [show]);
 
   useEffect(() => {
-    setLoading2(false);
+    setLoading(false);
     const dataEspecie = async () => {
-      let url_id = data?.url?.split("/"); // confierte a un array separando por el /
-      if (typeof url_id !== "undefined") {
-        const api = await axios.get(`${URL_SPECIES}/${data.name}`);
+        const api = await axios.get(`${URL_SPECIES}/${pokemon.pokedexNumber}`);
         setEspecie(api.data);
-      }
     };
-    dataEspecie();
 
-    setLoading2(true);
-  }, [data]);
+    dataEspecie();
+    setLoading(true);
+  }, []);
 
   const bgColor = BackgroundColor.find(
     ({ name }) => name === especie?.color?.name
   );
 
-  if (loading2 !== true)
+  if (loading !== true)
     return (
-      <div className="w-full h-12 Xbg-red-500 text-center">
-        <span className=" "> Load </span>
+      <div className="w-full h-12 flex items-center justify-center">
+        <span className=" "> <MdCatchingPokemon /> </span>
       </div>
     );
 
@@ -69,7 +57,8 @@ const MicroCard = ({ data }: any) => {
         <img
           onClick={() => setShow(true)}
           className=" cursor-pointer w-full hover:scale-110 pt-5"
-          src={pokemon?.sprites?.other["showdown"]?.front_default || pokemon?.sprites?.other["official-artwork"]?.front_default} //  official-artwork/front_default
+          //src={pokemon?.sprites?.other["showdown"]?.front_default || pokemon?.sprites?.other["official-artwork"]?.front_default} //  official-artwork/front_default
+          src={pokemon.image}
           alt=""
         />
       </div>
@@ -84,7 +73,7 @@ const MicroCard = ({ data }: any) => {
       >
         <div className="w-full pt-6">
           <div className="flex flex-row justify-center items-center font-semibold">
-            <TbPokeball /> <span className="pl-1 -mt-0.5"> {pokemon.id}</span>
+            <TbPokeball /> <span className="pl-1 -mt-0.5"> {pokemon.pokedexNumber}</span>
           </div>
         </div>
         <h1 className="text-center text-sm capitalize whitespace-nowrap -mt-1 ">
@@ -92,7 +81,7 @@ const MicroCard = ({ data }: any) => {
         </h1>
       </div>
       <Link
-        href={`/${data?.name.replaceAll(" ", "-").toLowerCase()}#view`}
+        href={`/${pokemon?.name.replaceAll(" ", "-").toLowerCase()}#view`}
         className={`absolute top-0 right-0 z-50 bg-white/20 border border-gray-500/50 rounded-md p-2 ${
           show ? " block " : " hidden "
         } `}

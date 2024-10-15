@@ -12,6 +12,9 @@ import MicroCard from "../components/MicroCard";
 import { Generations } from "../components/Generation";
 import { TbPokeball } from "react-icons/tb";
 import { AiOutlineClose } from "react-icons/ai";
+import usePokemons from "../hooks/usePokemons";
+import Card from "../components/Card";
+import { MdCatchingPokemon } from "react-icons/md";
 
 const Pok: any = [];
 
@@ -28,93 +31,27 @@ interface Gen {
   count: string;
 }
 const gene: Gen = {
-  name: "generation-iv",
-  alias: "Generation 4",
-  initial: "387",
-  count: "107",
+  name: "generation-i",
+  alias: "Generation 1",
+  initial: "1",
+  count: "151",
 };
 
-const Pokedex = () => {
-  const [arrayPokemon, setArrayPokemon] = useState(initialState);
-  const [globalPokemon, setGlobalPokemon] = useState([Pok]);
-  const [search, setSearch] = useState("");
+const Pokedex = (type: string, generacion: string) => {
+  const { pokemons, getNextUrl, morePokemons } = usePokemons();
   const [generation, setGeneration] = useState<Gen>(gene);
-  const [xpage, setXpage] = useState(1);
-  const countCard = 24;
-
-  useEffect(() => {
-    /*const api = async () => {
-      const limit = countCard;
-      const xp = (xpage - 1) * limit;
-      const apiPoke = await axios.get(
-        `${URL_POKEMON}/?offset=${xp}&limit=${limit}`
-        
-      );
-      setArrayPokemon(apiPoke.data.results);
-    }; */
-
-    const api = async () => {
-      const apiPoke = await axios.get(`${URL_GENERATION}/${generation?.name}`); //  ${generation?.name}
-      let limit = countCard;
-      const xp = (xpage - 1) * countCard;
-
-      let total = apiPoke.data.pokemon_species.length;
-
-      if (total - xp < limit) limit = total;
-      else {
-        limit = xpage * countCard;
-      }
-      //console.log(limit);
-      const array = apiPoke.data.pokemon_species.sort((a: any, b: any) => {
-        const au = a.url.split("/");
-        const bu = b.url.split("/");
-        if (Number(au[6]) > Number(bu[6])) {
-          return 1;
-        }
-        if (Number(au[6]) < Number(bu[6])) {
-          return -1;
-        }
-        // a must be equal to b
-        return 0;
-      });
-      //const array = apiPoke.data.pokemon_species.slice(xp, limit);
-      setArrayPokemon(array.slice(xp, limit));
-    };
-    //const gener=Generations.find((gen)=>gen.alias==="Generacion 2")
-    //setGeneration(Generations.find((gen)=>gen.alias==="Generation 6")); //{ name: "generation-iv", alias: "Generation 4", initial:"387",count: "107" })
-
-    api();
-    getGlobalPokemons();
-  }, [xpage, generation]);
-
-  const getGlobalPokemons = async () => {
-    const res = await axios.get(`${URL_POKEMON}/?offset=0&limit=1000`);
-    const promises = res.data.results.map((pokemon: any) => {
-      return pokemon;
-    });
-    const results = await Promise.all(promises);
-    setGlobalPokemon(results);
-  };
-
-  //console.log(globalPokemon);
-
-  const obtenerSearch = (e: any) => {
-    const texto = e.toLowerCase();
-    setSearch(texto);
-    setXpage(1);
-  };
+  const [search, setSearch] = useState("");
 
   const obtenerGeneracion = (e: any) => {
     const obj = Generations.find((item) => item.name === e) || gene;
     //console.log(obj);
     setGeneration(obj);
-    setXpage(1);
   };
 
-  const filterPokemons =
-    search?.length > 2
-      ? globalPokemon?.filter((pokemon) => pokemon?.name?.includes(search))
-      : arrayPokemon;
+  const obtenerSearch = (e: any) => {
+    const texto = e.toLowerCase();
+    setSearch(texto);
+  };
 
   return (
     <div className="lg:h-[600px] w-[1200px] text-white flex flex-row rounded-3xl bg-black/50 backdrop-blur-2xl ">
@@ -125,15 +62,12 @@ const Pokedex = () => {
       </section>
 
       <section className="w-full lg:basis-3/4">
-        <div className="p-5">
-          <div className="flex flex-row justify-between items-center">
-            <h1 className="text-xl font-semibold Xmb-5">Pokedex </h1>
-            <Link href={`/`} className="bg-white/30 rounded-lg p-2">
-              <AiOutlineClose />
-            </Link>
-          </div>
+        <h1 className="-mt-10 flex flex-row justify-center items-center text-xl font-bold">
+          <MdCatchingPokemon /> <span className="pl-3">Pokedex</span>
+        </h1>
 
-          <div id="up" className="flex flex-row gap-4 py-5">
+        <div className="p-5">
+          <div id="up" className="w-full flex flex-row gap-4 py-5">
             <select
               onChange={(e) => {
                 obtenerGeneracion(e.target.value);
@@ -141,7 +75,7 @@ const Pokedex = () => {
               defaultValue={generation?.name}
               name=""
               id=""
-              className="w-full bg-gray-800/50 rounded-full p-2 px-6 border border-gray-500/50"
+              className="w-40 appearance-none bg-gray-800/50 rounded-full p-2 px-6 border border-gray-500/50"
             >
               {Generations.map((item, index) => (
                 <option key={index} value={item.name}>
@@ -150,6 +84,9 @@ const Pokedex = () => {
               ))}
             </select>
             <Search obtenerSearch={obtenerSearch} />
+            <Link href={`/`} className="bg-white/30 rounded-lg p-3">
+              <AiOutlineClose />
+            </Link>
           </div>
 
           <div className="flex flex-row items-center">
@@ -157,29 +94,30 @@ const Pokedex = () => {
               {"G-"}
               {generation?.alias.substr(11)}
             </span>
-            <span className="pl-2 text-gray-400 text-sm">Total </span>
-            <span className="flex flex-row items-center border border-gray-500 rounded-full px-4 mx-1">
+            <span className="px-2 text-gray-400 text-sm">Total </span>
+            <span className="flex flex-row items-center font-semibold border border-gray-500 rounded-lg px-4">
               {generation?.count}
             </span>
-            <span className="text-gray-400 pl-5 text-sm">Range</span>
 
-            <h1 className="flex flex-row items-center border border-gray-500 rounded-full px-4 mx-1">
-              {Number(generation?.initial) + (xpage - 1) * countCard}
-              &nbsp; <TbPokeball /> &nbsp;
-              {Number(generation?.initial) +
-                (xpage - 1) * countCard +
-                filterPokemons.length -
-                1}
+            <span className="px-2 text-gray-400 pl-5 text-sm">Range</span>
+            <h1 className="flex flex-row items-center font-semibold border border-gray-500 rounded-lg px-4">
+              {Number(generation?.initial)}
+              &nbsp; <TbPokeball className="mx-2" /> &nbsp;
+              {Number(generation?.count) + Number(generation?.initial) - 1}
             </h1>
           </div>
 
-          <div className=" Xbg-red-300 grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-x-2 gap-y-5 py-5 Xborder border-gray-200/40 rounded-3xl">
-            {filterPokemons?.map((items, index) => (
-              <MicroCard key={index} data={items} />
-            ))}
+          <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-5 pt-10 mb-10">
+            {pokemons.length > 0 ? (
+              pokemons.map((item, index) => (
+                <MicroCard key={index} pokemon={item}></MicroCard>
+              ))
+            ) : (
+              <h1>Empty</h1>
+            )}
           </div>
 
-          {/** PAGINACION NAVEGACION */}
+          {/** PAGINACION NAVEGACION * /}
           <div className="flex flex-row items-center justify-center gap-x-4 ">
             <Link
               href="/pokedex#up"
@@ -208,6 +146,25 @@ const Pokedex = () => {
             >
               <FaChevronRight />
             </Link>
+          </div> {/  ** PAGINACION NAVEGACION */}
+          <div>
+            {morePokemons ? (
+              <button
+                onClick={getNextUrl}
+                type="button"
+                className="rounded-full text-center py-2 px-5 bg-indigo-600"
+              >
+                More Pokemons
+              </button>
+            ) : (
+              <Link
+                href="/pokedex#up"
+                className="rounded-full text-center py-2 px-5 bg-teal-600"
+              >
+                <span>Total: {pokemons.length} pokemons</span>
+                <span>{` - SUBIR `}</span>
+              </Link>
+            )}
           </div>
         </div>
       </section>

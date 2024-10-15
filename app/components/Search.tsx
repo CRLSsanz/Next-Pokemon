@@ -3,8 +3,6 @@ import { FiSearch } from "react-icons/fi";
 
 const Search = ({ obtenerSearch }: any) => {
   return (
-    <div className="md:basis-1/2">
-      <h1 className="hidden mb-2">Busqueda por Nombre</h1>
       <div className="relative w-full ">
         <input
           type="search"
@@ -16,7 +14,7 @@ const Search = ({ obtenerSearch }: any) => {
         <FiSearch />
         </div>
       </div>
-    </div>
+    
   );
 };
 

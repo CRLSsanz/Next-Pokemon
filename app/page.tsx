@@ -2,15 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { URL_POKEMON } from "@/app/api/apiRest";
-import {
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
 import Search from "./components/Search";
 import axios from "axios";
 import MiniCard from "./components/MiniCard";
 import Types from "./components/Types";
 import Link from "next/link";
+import usePokemons from "./hooks/usePokemons";
+import Card from "./components/Card";
 
 const Pok: any = [];
 
@@ -22,22 +20,13 @@ type Poke = {
 const initialState: Poke[] = [];
 
 export default function Home() {
-  const [arrayPokemon, setArrayPokemon] = useState(initialState);
+  const { pokemons, getNextUrl, morePokemons } = usePokemons();
   const [globalPokemon, setGlobalPokemon] = useState([Pok]);
-  const [search, setSearch] = useState(""); //"mew"
+  const [search, setSearch] = useState("mew"); //mew
   const [xpage, setXpage] = useState(1);
+  //console.log(morePokemons);
 
   useEffect(() => {
-    const api = async () => {
-      const limit =  150; //12;
-      const xp = 10080; //(xpage - 1) * limit;
-      const apiPoke = await axios.get(
-        `${URL_POKEMON}/?offset=${xp}&limit=${limit}` 
-      );
-      setArrayPokemon(apiPoke.data.results);
-    };
-
-    api();
     getGlobalPokemons();
   }, [xpage]);
 
@@ -61,7 +50,7 @@ export default function Home() {
   const filterPokemons =
     search?.length > 2
       ? globalPokemon?.filter((pokemon) => pokemon?.name?.includes(search))
-      : arrayPokemon
+      : []; //arrayPokemon;
 
   return (
     <div className="lg:h-[600px] w-[1200px] text-white flex flex-row rounded-3xl bg-black/40 backdrop-blur-2xl ">
@@ -79,8 +68,7 @@ export default function Home() {
             What Pokemon are you looking for?{" "}
           </h1>
 
-          <Search obtenerSearch={obtenerSearch}/>
-
+          <Search obtenerSearch={obtenerSearch} />
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 pt-10">
             {filterPokemons?.map((items, index) => (
@@ -89,13 +77,25 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 gap-4 my-5">
-            <Link href={`/pokedex`} className="rounded-xl px-3 py-5 bg-gradient-to-br from-green-700/70 to-green-500 font-semibold">Pokedex</Link>
-            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-red-700/70 to-red-500 font-semibold">Generations</div>
-            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-blue-700/70 to-blue-500 font-semibold">Types</div>
-            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-yellow-700/70 to-yellow-500 font-semibold">Species</div>
+            <Link
+              href={`/pokedex`}
+              className="rounded-xl px-3 py-5 bg-gradient-to-br from-green-700/70 to-green-500 font-semibold"
+            >
+              Pokedex
+            </Link>
+            <Link
+              href={`/pokedex/generations`}
+              className="rounded-xl px-3 py-5 bg-gradient-to-br from-red-700/70 to-red-500 font-semibold"
+            >
+              Generations
+            </Link>
+            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-blue-700/70 to-blue-500 font-semibold">
+              Types
+            </div>
+            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-yellow-700/70 to-yellow-500 font-semibold">
+              Species
+            </div>
           </div>
-
-
         </div>
       </section>
     </div>
