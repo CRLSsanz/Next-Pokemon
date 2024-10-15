@@ -31,21 +31,22 @@ interface Gen {
   count: string;
 }
 const gene: Gen = {
-  name: "generation-i",
-  alias: "Generation 1",
+  name: "generation-ix",
+  alias: "Generation 2",
   initial: "1",
-  count: "151",
+  count: "1025",
 };
 
 const Pokedex = () => {
-  const { pokemons, getNextUrl, morePokemons } = usePokemons();
   const [generation, setGeneration] = useState<Gen>(gene);
+  const { pokemons, getNextUrl, morePokemons } = usePokemons(generation?.name);
   const [search, setSearch] = useState("");
 
   const obtenerGeneracion = (e: any) => {
     const obj = Generations.find((item) => item.name === e) || gene;
     //console.log(obj);
     setGeneration(obj);
+    //getNextUrl;
   };
 
   const obtenerSearch = (e: any) => {
@@ -84,6 +85,7 @@ const Pokedex = () => {
               ))}
             </select>
             <Search obtenerSearch={obtenerSearch} />
+
             <Link href={`/`} className="bg-white/30 rounded-lg p-3">
               <AiOutlineClose />
             </Link>
