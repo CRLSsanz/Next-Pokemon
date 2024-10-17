@@ -83,7 +83,7 @@ export default function Home() {
               Pokedex
             </Link>
             <Link
-              href={`/pokedex/generations`}
+              href={`/pokedex/generacion`}
               className="rounded-xl px-3 py-5 bg-gradient-to-br from-red-700/70 to-red-500 font-semibold"
             >
               Generations
