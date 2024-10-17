@@ -1,9 +1,13 @@
-import React from "react";
-import { Generations } from "../../components/Generation";
+import React, { useContext } from "react";
 import { BsArrowsAngleExpand } from "react-icons/bs";
 import Link from "next/link";
 import { FaGuilded } from "react-icons/fa";
-const Generation = () => {
+import { PokemonContext } from "@/app/context/PokemonContext";
+
+const Generations = () => {
+
+  const {generations} = useContext(PokemonContext);
+
   return (
     <div className="lg:h-[600px] w-[1200px] text-white flex flex-col rounded-3xl bg-black/50 backdrop-blur-2xl ">
       <h1 className="-mt-5 flex flex-row justify-center items-center text-xl font-bold">
@@ -11,14 +15,14 @@ const Generation = () => {
       </h1>
 
       <div className="w-full p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {Generations.map((item, index) => (
+        {generations?.map((item, index) => (
           <div className="relative flex flex-col " key={index}>
             <div className="">
-              <img src={item.image} alt={item.alias} className="h-32 w-full" />
+              <img src={item.url} alt={item.url} className="h-32 w-full" />
             </div>
 
             <div className="-mt-8 py-1 px-3 bg-black/50 font-semibold">
-              <Link href="../pokedex">{item.alias}</Link>
+              <Link href="../pokedex">{item.name}</Link>
             </div>
 
             <Link
@@ -34,4 +38,4 @@ const Generation = () => {
   );
 };
 
-export default Generation;
+export default Generations;
