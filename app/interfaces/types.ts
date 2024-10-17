@@ -12,3 +12,8 @@ type PokeTypes =
   | "ghost"
   | "dark"
   | "grass";
+
+export type IPokeGeneration = {
+  name?: string;
+  url?: string;
+};

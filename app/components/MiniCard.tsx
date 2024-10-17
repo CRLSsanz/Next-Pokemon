@@ -36,9 +36,10 @@ const MiniCard = ({ data }: any) => {
         setEspecie(api.data);
       }
     };
-
+    
     dataEspecie();
-  }, [data]);
+  }, []);
+  
 
   const bgColor = BackgroundColor.find(
     ({ name }) => name === especie?.color?.name
@@ -85,7 +86,8 @@ const MiniCard = ({ data }: any) => {
 
         <div className="absolute bottom-2 right-2 ">{pokemon.id}</div>
         <div className="absolute top-2 right-2 flex flex-col gap-2">
-          <Link href={`/${data?.name.replaceAll(" ", "-").toLowerCase()}#view`}
+          <Link
+            href={`/${pokemon?.name?.replaceAll(" ", "-").toLowerCase()}#view`}
             className="text-sm bg-white/30 rounded-lg p-1 active:animate-ping rotate-90"
           >
             <TfiArrowsCorner />

@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import { URL_POKEMON } from "../api/apiRest";
 import { IPokemon } from "../interfaces/interfaces";
 
+const Pok: any = {};
+
 const usePokemon = (url?: string, id?: string) => {
-  const [pokemon, setPokemon] = useState<null | undefined | IPokemon>();
+  const [pokemon, setPokemon] = useState(Pok);
 
   const dataPokemon = async () => {
     if (url) {
@@ -14,7 +16,7 @@ const usePokemon = (url?: string, id?: string) => {
     } else if (id) {
       const api = await axios.get(`${URL_POKEMON}/${id}`);
       setPokemon(api.data);
-    }
+    }    
   };
 
   useEffect(() => {

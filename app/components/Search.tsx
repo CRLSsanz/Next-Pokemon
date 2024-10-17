@@ -3,7 +3,7 @@ import { FiSearch } from "react-icons/fi";
 
 const Search = ({ obtenerSearch }: any) => {
   return (
-      <div className="relative w-full ">
+      <div className="relative hidden lg:block w-full ">
         <input
           type="search"
           className="w-full bg-gray-800/50 rounded-full p-2 pl-12 border border-gray-500/50"

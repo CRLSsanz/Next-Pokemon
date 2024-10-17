@@ -7,14 +7,15 @@ import axios from "axios";
 import MiniCard from "../components/MiniCard";
 import Types from "../components/Types";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import MicroCard from "../components/MicroCard";
-import { Generations } from "../components/Generation";
 import { TbPokeball } from "react-icons/tb";
 import { AiOutlineClose } from "react-icons/ai";
 import usePokemons from "../hooks/usePokemons";
 import Card from "../components/Card";
 import { MdCatchingPokemon } from "react-icons/md";
+import { PokemonContext } from "../context/PokemonContext";
+import Generation from "../components/Generation";
 
 const Pok: any = [];
 
@@ -38,16 +39,14 @@ const gene: Gen = {
 };
 
 const Pokedex = () => {
-  const [generation, setGeneration] = useState<Gen>(gene);
-  const { pokemons, getNextUrl, morePokemons } = usePokemons(generation?.name);
-  const [search, setSearch] = useState("");
-
-  const obtenerGeneracion = (e: any) => {
-    const obj = Generations.find((item) => item.name === e) || gene;
-    //console.log(obj);
-    setGeneration(obj);
-    //getNextUrl;
-  };
+  //const [generation, setGeneration] = useState<Gen>(gene);
+  //const { pokemons, getNextUrl, morePokemons } = usePokemons(generation?.name);
+  const {
+    pokemonsFiltered,
+    filterSelected,
+    changeTypeSelected,
+  } = useContext(PokemonContext);
+   const [search, setSearch] = useState("");
 
   const obtenerSearch = (e: any) => {
     const texto = e.toLowerCase();
@@ -68,30 +67,20 @@ const Pokedex = () => {
         </h1>
 
         <div className="p-5">
-          <div id="up" className="w-full flex flex-row gap-4 py-5">
-            <select
-              onChange={(e) => {
-                obtenerGeneracion(e.target.value);
-              }}
-              defaultValue={generation?.name}
-              name=""
-              id=""
-              className="w-40 appearance-none bg-gray-800/50 rounded-full p-2 px-6 border border-gray-500/50"
-            >
-              {Generations.map((item, index) => (
-                <option key={index} value={item.name}>
-                  {item.alias}
-                </option>
-              ))}
-            </select>
+          <div id="up" className="w-full flex flex-row gap-x-4 pt-5">
+            <Generation />
             <Search obtenerSearch={obtenerSearch} />
 
-            <Link href={`/`} className="bg-white/30 rounded-lg p-3">
+            <Link href={`/`} className="h-10 px-3 text-lg flex justify-center items-center bg-black/20 border border-gray-600 rounded-lg">
               <AiOutlineClose />
             </Link>
           </div>
 
-          <div className="flex flex-row items-center">
+          <div>
+            <h1>{pokemonsFiltered?.length} Pokemons</h1>
+          </div>
+
+         {/** <div className="flex flex-row items-center">
             <span className="hidden pl-3 pr-1">
               {"G-"}
               {generation?.alias.substr(11)}
@@ -107,12 +96,12 @@ const Pokedex = () => {
               &nbsp; <TbPokeball className="mx-2" /> &nbsp;
               {Number(generation?.count) + Number(generation?.initial) - 1}
             </h1>
-          </div>
+          </div>  */}
 
-          <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-5 pt-10 mb-10">
-            {pokemons.length > 0 ? (
-              pokemons.map((item, index) => (
-                <MicroCard key={index} pokemon={item}></MicroCard>
+          <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-5 pt-5 mb-10">
+            {pokemonsFiltered?.length! > 0 ? (
+              pokemonsFiltered?.map((item, index) => (
+                <MicroCard key={index} url={item}></MicroCard>
               ))
             ) : (
               <h1>Empty</h1>
@@ -149,6 +138,9 @@ const Pokedex = () => {
               <FaChevronRight />
             </Link>
           </div> {/  ** PAGINACION NAVEGACION */}
+          
+          {/**
+           * 
           <div>
             {morePokemons ? (
               <button
@@ -168,6 +160,8 @@ const Pokedex = () => {
               </Link>
             )}
           </div>
+              */}
+
         </div>
       </section>
     </div>

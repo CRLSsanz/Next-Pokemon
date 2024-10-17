@@ -8,14 +8,20 @@ import { TbPokeball } from "react-icons/tb";
 import { CgPokemon } from "react-icons/cg";
 import { BackgroundColor } from "./Colors";
 import { PokemonListType } from "../interfaces/interfaces";
+import usePokemon from "../hooks/usePokemon";
 
 const Pok: any = [];
 
-type PokemonType ={
-  pokemon: PokemonListType
+type PokemonType = {
+  pokemon: PokemonListType;
 };
+interface Props {
+  url: string;
+}
 
-const MicroCard = ({ pokemon }: PokemonType) => {
+const MicroCard  =({ url }: Props) => {
+  const { pokemon } = usePokemon(url);
+
   const [especie, setEspecie] = useState(Pok); //
 
   const [show, setShow] = useState(false);
@@ -32,8 +38,8 @@ const MicroCard = ({ pokemon }: PokemonType) => {
   useEffect(() => {
     setLoading(false);
     const dataEspecie = async () => {
-        const api = await axios.get(`${URL_SPECIES}/${pokemon.pokedexNumber}`);
-        setEspecie(api.data);
+      //const api = await axios.get(`${URL_SPECIES}/${pokemon.}`);
+      //setEspecie(api.data);
     };
 
     dataEspecie();
@@ -47,7 +53,10 @@ const MicroCard = ({ pokemon }: PokemonType) => {
   if (loading !== true)
     return (
       <div className="w-full h-12 flex items-center justify-center">
-        <span className=" "> <MdCatchingPokemon /> </span>
+        <span className=" ">
+          {" "}
+          <MdCatchingPokemon />{" "}
+        </span>
       </div>
     );
 
@@ -57,8 +66,8 @@ const MicroCard = ({ pokemon }: PokemonType) => {
         <img
           onClick={() => setShow(true)}
           className=" cursor-pointer w-full hover:scale-110 pt-5"
-          //src={pokemon?.sprites?.other["showdown"]?.front_default || pokemon?.sprites?.other["official-artwork"]?.front_default} //  official-artwork/front_default
-          src={pokemon.image}
+          src={pokemon?.sprites?.other["showdown"]?.front_default || pokemon?.sprites?.other["official-artwork"]?.front_default} //  official-artwork/front_default
+          //src={pokemon.image}
           alt=""
         />
       </div>
@@ -73,7 +82,8 @@ const MicroCard = ({ pokemon }: PokemonType) => {
       >
         <div className="w-full pt-6">
           <div className="flex flex-row justify-center items-center font-semibold">
-            <TbPokeball /> <span className="pl-1 -mt-0.5"> {pokemon.pokedexNumber}</span>
+            <TbPokeball />{" "}
+            <span className="pl-1 -mt-0.5"> {pokemon.id }</span>
           </div>
         </div>
         <h1 className="text-center text-sm capitalize whitespace-nowrap -mt-1 ">
@@ -81,7 +91,7 @@ const MicroCard = ({ pokemon }: PokemonType) => {
         </h1>
       </div>
       <Link
-        href={`/${pokemon?.name.replaceAll(" ", "-").toLowerCase()}#view`}
+        href={`/${pokemon?.name?.replaceAll(" ", "-").toLowerCase()}#view`}
         className={`absolute top-0 right-0 z-50 bg-white/20 border border-gray-500/50 rounded-md p-2 ${
           show ? " block " : " hidden "
         } `}

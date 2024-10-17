@@ -7,10 +7,18 @@ import {
   Allerta_Stencil,
   Gugi, //Titulo mayuscula
   //Stick, //PAra game
-  Text_Me_One,Josefin_Sans, Poiret_One, Abel, Raleway, Jost,Roboto, Comfortaa,
-  Montserrat, Outfit
+  Text_Me_One,
+  Josefin_Sans,
+  Poiret_One,
+  Abel,
+  Raleway,
+  Jost,
+  Roboto,
+  Comfortaa,
+  Montserrat,
+  Outfit,
 } from "next/font/google";
-
+import PokemonProvider from "./context/PokemonContext";
 
 const inter = Outfit({
   weight: ["400"],
@@ -53,7 +61,11 @@ export default function RootLayout({
         className={`$ {geistSans.variable} $ {geistMono.variable} antialiased ${inter.className}`}
       >
         <div className="bg-cover bg-fixed bg-[0%] bg-[url('https://wallpapercave.com/wp/wp10742481.jpg')] min-h-screen">
-          <div className="w-full h-full lg:h-screen p-5 lg:p-0 flex lg:items-center justify-center ">{children}</div>
+          <div className="w-full h-full lg:h-screen p-5 lg:p-0 flex lg:items-center justify-center ">
+            <PokemonProvider>
+              {children}
+            </PokemonProvider>
+          </div>
         </div>
       </body>
     </html>

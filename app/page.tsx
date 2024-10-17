@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { URL_POKEMON } from "@/app/api/apiRest";
 import Search from "./components/Search";
 import axios from "axios";
-import MiniCard from "./components/MiniCard";
 import Types from "./components/Types";
 import Link from "next/link";
+import MiniCard from "./components/MiniCard";
 
 const Pok: any = [];
 
@@ -20,20 +20,20 @@ const initialState: Poke[] = [];
 export default function Home() {
   const [globalPokemon, setGlobalPokemon] = useState([Pok]);
   const [search, setSearch] = useState("mew"); //mew
-  const [xpage, setXpage] = useState(1);
-  //console.log(morePokemons);
+  //console.log(pokemonsFiltered);
 
   useEffect(() => {
     getGlobalPokemons();
-  }, [xpage]);
+  }, []);
 
   const getGlobalPokemons = async () => {
-    const res = await axios.get(`${URL_POKEMON}/?offset=0&limit=10240`);
-    const promises = res.data.results.map((pokemon: any) => {
-      return pokemon;
-    });
-    const results = await Promise.all(promises);
-    setGlobalPokemon(results);
+    const res = await axios.get(`${URL_POKEMON}/?offset=0&limit=1025`);
+    //const promises = res.data.results.map((pokemon: any) => {
+    //  return pokemon;
+    //});
+    //const results = await Promise.all(promises);
+
+    setGlobalPokemon(res?.data?.results);
   };
 
   //console.log(globalPokemon);
@@ -41,7 +41,6 @@ export default function Home() {
   const obtenerSearch = (e: any) => {
     const texto = e.toLowerCase();
     setSearch(texto);
-    setXpage(1);
   };
 
   const filterPokemons =
@@ -67,12 +66,15 @@ export default function Home() {
 
           <Search obtenerSearch={obtenerSearch} />
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 pt-10">
-            {filterPokemons?.map((items, index) => (
-              <MiniCard key={index} data={items} />
-            ))}
+          <div>
+            <h1 className="">Pokemons encontrados {filterPokemons?.length}</h1>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 pt-10">
+              {filterPokemons?.map((items: any, index: any) => (
+                <MiniCard key={index} data={items} />
+              ))}
+            </div>
+            <h1> MORE POKEMON</h1>
           </div>
-
           <div className="grid grid-cols-2 gap-4 my-5">
             <Link
               href={`/pokedex`}

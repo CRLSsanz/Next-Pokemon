@@ -20,6 +20,10 @@ export interface IPokemon {
   name: string;
 }
 
+export interface IPokemonByType {
+  pokemon: { name: string; url: string };
+}
+
 export interface IGenerations {
   count: number; //9
   next: string | null; //"https://pokeapi.co/api/v2/generation"
@@ -31,10 +35,10 @@ export interface IGeneration {
   abilities?: string[];
   id: number;
   main?: {};
-  moves?: string[]
-  name: string
-  names?: string[]
-  pokemon_species:IResults[]
-  types?: []
-  version_groups?: string[]
+  moves?: string[];
+  name: string;
+  names?: string[];
+  pokemon_species: IResults[];
+  types?: [];
+  version_groups?: string[];
 }
