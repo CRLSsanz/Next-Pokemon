@@ -7,23 +7,27 @@ const Pok: any = {};
 
 const usePokemon = (url?: string, id?: string) => {
   const [pokemon, setPokemon] = useState(Pok);
-
-  const dataPokemon = async () => {
+//console.log("url:" + url +" // id: "+ id)
+  const getPokemon = async () => {
     if (url) {
       //let url_id = url.split("/");
-      const api = await axios.get(url); //`${URL_POKEMON}/${url_id[6]}`);
+      //console.log(url)
+      const url_id=url?.replace(`https://pokeapi.co/api/v2/pokemon-species/`, `${URL_POKEMON}/`)
+      const api = await axios.get(url_id); //`${URL_POKEMON}/${url_id[6]}`);
       setPokemon(api.data);
     } else if (id) {
-      const api = await axios.get(`${URL_POKEMON}/${id}`);
+      const api = await axios.get(`${id}`);
       setPokemon(api.data);
-    }    
+    }
+        
   };
 
   useEffect(() => {
-    dataPokemon();
+    //console.log(pokemon)
+    getPokemon();
   }, []);
 
-  return { pokemon };
+  return { pokemon};
 };
 
 export default usePokemon;

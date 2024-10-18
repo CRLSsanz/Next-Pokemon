@@ -29,8 +29,8 @@ const PokemonProvider = ({ children }: any) => {
   };
 
   const defaultGeneration: IPokeGeneration = {
-    name: "All",
-    url: "",
+    name: "generation-ix",
+    url: `${URL_GENERATION}/9`,
   };
 
   const [types, setTypes] = useState([defaultState]);
@@ -51,7 +51,7 @@ const PokemonProvider = ({ children }: any) => {
     const { data } = await axios.get(gene?.url!); //`${URL_POKEMON}/${url_id![6]}`);
     let pokemons = data?.pokemon_species?.map((pokemon: any) => pokemon.url.replace(`https://pokeapi.co/api/v2/pokemon-species/`, `${URL_POKEMON}/`));
     
-    console.log(pokemons);
+    //console.log(pokemons);
     setPokemonsFiltered(pokemons);
   };
 

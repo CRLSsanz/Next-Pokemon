@@ -16,6 +16,7 @@ import Card from "../components/Card";
 import { MdCatchingPokemon } from "react-icons/md";
 import { PokemonContext } from "../context/PokemonContext";
 import Generation from "../components/Generation";
+import usePagination from "../hooks/usePagination";
 
 const Pok: any = [];
 
@@ -39,19 +40,19 @@ const gene: Gen = {
 };
 
 const Pokedex = () => {
-  //const [generation, setGeneration] = useState<Gen>(gene);
-  //const { pokemons, getNextUrl, morePokemons } = usePokemons(generation?.name);
-  const {
-    pokemonsFiltered,
-    filterSelected,
-    changeTypeSelected,
-  } = useContext(PokemonContext);
-   const [search, setSearch] = useState("");
+  const { generations, pokemonsFiltered } =
+    useContext(PokemonContext);
+
+  const { pokemons, getNextUrl, morePokemons } = usePagination();
+  const [search, setSearch] = useState("");
 
   const obtenerSearch = (e: any) => {
     const texto = e.toLowerCase();
     setSearch(texto);
   };
+
+  //console.log(pokemonsFiltered?.length)
+  //console.log(pokemonsFiltered)
 
   return (
     <div className="lg:h-[600px] w-[1200px] text-white flex flex-row rounded-3xl bg-black/50 backdrop-blur-2xl ">
@@ -69,18 +70,29 @@ const Pokedex = () => {
         <div className="p-5">
           <div id="up" className="w-full flex flex-row gap-x-4 pt-5">
             <Generation />
-            <Search obtenerSearch={obtenerSearch} />
+            <div className="hidden lg:block">
+              <Search obtenerSearch={obtenerSearch} />
+            </div>
 
-            <Link href={`/`} className="h-10 px-3 text-lg flex justify-center items-center bg-black/20 border border-gray-600 rounded-lg">
+            <Link
+              href={`/`}
+              className="h-10 px-3 text-lg flex justify-center items-center bg-black/20 border border-gray-600 rounded-lg"
+            >
               <AiOutlineClose />
             </Link>
           </div>
 
           <div>
-            <h1>{pokemonsFiltered?.length} Pokemons</h1>
+            <h1 className="px-5">
+              List {" "}
+              <span className="mx-2 px-2 border border-gray-500/50 rounded-md">
+                {pokemonsFiltered?.length}
+              </span>
+              {" "} Pokemons
+            </h1>
           </div>
 
-         {/** <div className="flex flex-row items-center">
+          {/** <div className="flex flex-row items-center">
             <span className="hidden pl-3 pr-1">
               {"G-"}
               {generation?.alias.substr(11)}
@@ -99,8 +111,8 @@ const Pokedex = () => {
           </div>  */}
 
           <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-5 pt-5 mb-10">
-            {pokemonsFiltered?.length! > 0 ? (
-              pokemonsFiltered?.map((item, index) => (
+            {pokemons?.length! > 0 ? (
+              pokemons?.map((item: any, index: any) => (
                 <MicroCard key={index} url={item}></MicroCard>
               ))
             ) : (
@@ -138,9 +150,7 @@ const Pokedex = () => {
               <FaChevronRight />
             </Link>
           </div> {/  ** PAGINACION NAVEGACION */}
-          
-          {/**
-           * 
+
           <div>
             {morePokemons ? (
               <button
@@ -160,8 +170,6 @@ const Pokedex = () => {
               </Link>
             )}
           </div>
-              */}
-
         </div>
       </section>
     </div>

@@ -59,7 +59,7 @@ export default function Home() {
       <section className="w-full lg:basis-3/4">
         <div className="p-5">
           <h1 className="text-xl font-semibold">Good morning, Charlie </h1>
-          <h1 className="text-sm text-gray-200 mb-14">List Pokemons</h1>
+          <h1 className="text-sm text-gray-400 mb-14">Wellcome to Pokedex Pototype v:2.0</h1>
           <h1 className="text-3xl font-semibold py-5">
             What Pokemon are you looking for?{" "}
           </h1>
@@ -67,13 +67,12 @@ export default function Home() {
           <Search obtenerSearch={obtenerSearch} />
 
           <div>
-            <h1 className="">Pokemons encontrados {filterPokemons?.length}</h1>
+            <h1 className="hidden">Pokemons encontrados {filterPokemons?.length}</h1>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 pt-10">
               {filterPokemons?.map((items: any, index: any) => (
                 <MiniCard key={index} data={items} />
               ))}
             </div>
-            <h1> MORE POKEMON</h1>
           </div>
           <div className="grid grid-cols-2 gap-4 my-5">
             <Link

@@ -19,8 +19,10 @@ interface Props {
   url: string;
 }
 
-const MicroCard  =({ url }: Props) => {
+const MicroCard = ({ url }: Props) => {
   const { pokemon } = usePokemon(url);
+  //const { } = usePokemons(generation?.name);, getNextUrl, morePokemons
+  //console.log(pokemon)
 
   const [especie, setEspecie] = useState(Pok); //
 
@@ -37,14 +39,20 @@ const MicroCard  =({ url }: Props) => {
 
   useEffect(() => {
     setLoading(false);
+
     const dataEspecie = async () => {
-      //const api = await axios.get(`${URL_SPECIES}/${pokemon.}`);
-      //setEspecie(api.data);
+      //console.log(pokemon)
+
+      if(pokemon.id){
+        const api = await axios.get(`${URL_SPECIES}/${pokemon.id}`);
+        setEspecie(api.data);
+      }
     };
 
     dataEspecie();
+
     setLoading(true);
-  }, []);
+  }, [pokemon]);
 
   const bgColor = BackgroundColor.find(
     ({ name }) => name === especie?.color?.name
@@ -66,7 +74,10 @@ const MicroCard  =({ url }: Props) => {
         <img
           onClick={() => setShow(true)}
           className=" cursor-pointer w-full hover:scale-110 pt-5"
-          src={pokemon?.sprites?.other["showdown"]?.front_default || pokemon?.sprites?.other["official-artwork"]?.front_default} //  official-artwork/front_default
+          src={
+            pokemon?.sprites?.other["showdown"]?.front_default ||
+            pokemon?.sprites?.other["official-artwork"]?.front_default
+          } //  official-artwork/front_default
           //src={pokemon.image}
           alt=""
         />
@@ -82,8 +93,7 @@ const MicroCard  =({ url }: Props) => {
       >
         <div className="w-full pt-6">
           <div className="flex flex-row justify-center items-center font-semibold">
-            <TbPokeball />{" "}
-            <span className="pl-1 -mt-0.5"> {pokemon.id }</span>
+            <TbPokeball /> <span className="pl-1 -mt-0.5"> {pokemon.id}</span>
           </div>
         </div>
         <h1 className="text-center text-sm capitalize whitespace-nowrap -mt-1 ">
