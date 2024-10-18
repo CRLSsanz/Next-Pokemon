@@ -1,18 +1,11 @@
 "use client";
 
-import { URL_GENERATION, URL_POKEMON } from "@/app/api/apiRest";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Search from "../components/Search";
-import axios from "axios";
-import MiniCard from "../components/MiniCard";
 import Types from "../components/Types";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import MicroCard from "../components/MicroCard";
-import { TbPokeball } from "react-icons/tb";
 import { AiOutlineClose } from "react-icons/ai";
-import usePokemons from "../hooks/usePokemons";
-import Card from "../components/Card";
 import { MdCatchingPokemon } from "react-icons/md";
 import { PokemonContext } from "../context/PokemonContext";
 import Generation from "../components/Generation";

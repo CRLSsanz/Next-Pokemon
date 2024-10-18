@@ -82,7 +82,7 @@ export default function Home() {
               Pokedex
             </Link>
             <Link
-              href={`/pokedex/generacion`}
+              href={`/generation`}
               className="rounded-xl px-3 py-5 bg-gradient-to-br from-red-700/70 to-red-500 font-semibold"
             >
               Generations
@@ -90,8 +90,16 @@ export default function Home() {
             <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-blue-700/70 to-blue-500 font-semibold">
               Types
             </div>
-            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-yellow-700/70 to-yellow-500 font-semibold">
-              Species
+            <Link
+              href={`/pikachu`}
+              className="rounded-xl px-3 py-5 bg-gradient-to-br from-yellow-700/70 to-yellow-500 font-semibold">
+              Pikachu
+            </Link>
+            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-purple-700/70 to-purple-500 font-semibold">
+              purple
+            </div>
+            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-yellow-900/70 to-yellow-700 font-semibold">
+              marron
             </div>
           </div>
         </div>

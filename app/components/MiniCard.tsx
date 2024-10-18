@@ -36,10 +36,9 @@ const MiniCard = ({ data }: any) => {
         setEspecie(api.data);
       }
     };
-    
+
     dataEspecie();
   }, []);
-  
 
   const bgColor = BackgroundColor.find(
     ({ name }) => name === especie?.color?.name
@@ -50,6 +49,8 @@ const MiniCard = ({ data }: any) => {
     //console.log(item?.color);
     return item?.colorBg;
   };
+
+  const gene = especie?.generation?.url?.split("/");
 
   return (
     <div className="flex flex-col justify-center pokemons-center mb-5 Xbg-red-400 ">
@@ -84,7 +85,9 @@ const MiniCard = ({ data }: any) => {
           </div>
         </div>
 
-        <div className="absolute bottom-2 right-2 ">{pokemon.id}</div>
+        <div className="absolute bottom-4 right-2 font-bold text-lg ">
+          G.{gene ? gene[6] : null}
+        </div>
         <div className="absolute top-2 right-2 flex flex-col gap-2">
           <Link
             href={`/${pokemon?.name?.replaceAll(" ", "-").toLowerCase()}#view`}
