@@ -59,7 +59,7 @@ const Pikachu = () => {
   return (
     <div className="lg:h-[800px] w-[1400px] text-white flex flex-col rounded-3xl bg-black/40 backdrop-blur-2xl p-5">
       <h1 className="mb-5">POKEMONS PIKACHU</h1>
-      <div className="grid grid-cols-10 gap-5">
+      <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 gap-5">
         {pokemons?.map((item: any, index: any) => (
           <Card key={index} pokemon={item} />
         ))}
