@@ -8,8 +8,9 @@ import Card from "../components/Card";
 
 const Poke: any = [];
 
-const Pikachu = () => {
+const GigantMax = () => {
   const [pokemons, setPokemons] = useState(Poke);
+  const search = "mega";
 
   useEffect(() => {
     getPokemons();
@@ -40,27 +41,16 @@ const Pikachu = () => {
     return listPokemon;
   };
 
-  const CardXX = ({poke}: any) => {
-    console.log(poke);
-    return (
-      <div className="w-full">
-        <h1>{poke.pokedexNumber}</h1>
-        <div> {poke.name}</div>
-        <img
-          className="-mt-5 cursor-pointer w-full hover:scale-110 px-2"
-          //src={pokemon?.sprites?.other?.showdown?.front_default}
-          src={poke.image}
-          alt=""
-        />
-      </div>
-    );
-  };
+  const filterPokemons = pokemons?.filter((pokemon:any) => pokemon?.name?.includes(search))
+   // search === "pika"
+    // ? globalPokemon?.filter((pokemon) => pokemon?.name?.includes(search))
+    //  : []; //arrayPokemon;
 
   return (
     <div className="lg:h-[800px] w-[1400px] text-white flex flex-col rounded-3xl bg-black/40 backdrop-blur-2xl p-5">
       <h1 className="mb-5">POKEMONS PIKACHU</h1>
-      <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 gap-5">
-        {pokemons?.map((item: any, index: any) => (
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+        {filterPokemons?.map((item: any, index: any) => (
           <Card key={index} pokemon={item} />
         ))}
       </div>
@@ -68,4 +58,4 @@ const Pikachu = () => {
   );
 };
 
-export default Pikachu;
+export default GigantMax;

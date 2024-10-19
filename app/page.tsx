@@ -7,6 +7,7 @@ import axios from "axios";
 import Types from "./components/Types";
 import Link from "next/link";
 import MiniCard from "./components/MiniCard";
+import Card from "./components/Card";
 
 const Pok: any = [];
 
@@ -87,13 +88,17 @@ export default function Home() {
             >
               Generations
             </Link>
-            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-blue-700/70 to-blue-500 font-semibold">
-              Types
-            </div>
+
             <Link
-              href={`/pikachu`}
+              href={`/potypes`}
+            className="rounded-xl px-3 py-5 bg-gradient-to-br from-blue-700/70 to-blue-500 font-semibold">
+              Types
+            </Link>
+
+            <Link
+              href={`/gigantmax`}
               className="rounded-xl px-3 py-5 bg-gradient-to-br from-yellow-700/70 to-yellow-500 font-semibold">
-              Pikachu
+              GigantMax
             </Link>
             <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-purple-700/70 to-purple-500 font-semibold">
               purple

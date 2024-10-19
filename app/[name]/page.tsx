@@ -64,7 +64,6 @@ const Pokemon = ({ params }: any) => {
     return item?.colorBorder;
   };
 
-
   if (loading1 !== true)
     return (
       <div className="w-full h-60 Xbg-red-500 text-center">
@@ -89,11 +88,9 @@ const Pokemon = ({ params }: any) => {
           <Link href={`/pokedex`} className="bg-white/30 rounded-lg p-2">
             <TbPokeball />
           </Link>
-          <h1 className="font-semibold text-white/50 ">
-            #0{pokemon.id}
-          </h1>
+          <h1 className="font-semibold text-white/50 ">#0{pokemon.id}</h1>
           <Link href={`/`} className="bg-white/30 rounded-lg p-2">
-          <AiOutlineClose />
+            <AiOutlineClose />
           </Link>
         </div>
 
@@ -110,134 +107,133 @@ const Pokemon = ({ params }: any) => {
       <section
         className={`Xrelative w-full  -mt-16 lg:basis-3/4 rounded-3xl lg:rounded-l-none lg:rounded-r-3xl backdrop-blur-2xl bg-black/50 Xbg-gradient-to-br from-black/0 ${bgColor?.color}  text-white lg:pl-10`}
       >
-          {/** DETALLE */}
-          <section className={`lg:relative basis-1/2 pt-10 lg:pr-10 `}>
-            {/** NOMBRE - INFO */}
-            <div className="text-center mb-5 px-5 lg:px-0">
-              <h1 className="capitalize tracking-wider font-bold text-3xl pt-4 mb-2 lg:pt-10 ">
-                {pokemon.name}
+        {/** DETALLE */}
+        <section className={`lg:relative basis-1/2 pt-10 lg:pr-10 `}>
+          {/** NOMBRE - INFO */}
+          <div className="text-center mb-5 px-5 lg:px-0">
+            <h1 className="capitalize tracking-wider font-bold text-3xl pt-4 mb-2 lg:pt-10 ">
+              {pokemon.name}
+            </h1>
+            <h1 className="text-gray-300 text-sm mb-5">{info}</h1>
+          </div>
+
+          {/** TYPES - ICONS */}
+          <div className="flex flex-row justify-center gap-4">
+            {pokemon?.types?.map((item: any, index: any) => {
+              return (
+                <div
+                  key={index}
+                  className={`w-24 flex flex-row justify-center items-center rounded-lg border ${resultColorBorder(
+                    item.type.name
+                  )} py-1 text-xl mb-4 gap-2 ${resultColorText(
+                    item.type.name
+                  )} `}
+                >
+                  {Icons(item.type.name)}
+                  <h1 className=" capitalize text-sm text-center font-semibold">
+                    {item.type.name}
+                  </h1>
+                </div>
+              );
+            })}
+          </div>
+          {/** TALLA PESO GENERACION */}
+          <div className="w-full grid grid-cols-3 gap-y-4 text-white py-5 mb-5">
+            <div className="text-center">
+              <h1 className="text-lg font-semibold">
+                {(Number(pokemon.height) * 0.1).toFixed(1)} M
               </h1>
-              <h1 className="text-gray-300 text-sm mb-5">{info}</h1>
+              <div className="flex flex-row justify-center items-center text-gray-300 gap-1">
+                <CgRuler />
+                <h1 className="text-sm "> Height</h1>
+              </div>
+            </div>
+            <div className="text-center">
+              <h1 className="text-lg font-semibold">{pokemon.weight} KG</h1>
+              <div className="flex flex-row justify-center items-center text-gray-300 gap-1">
+                <RiWeightLine />
+                <h1 className="text-sm"> Weight</h1>
+              </div>
+            </div>
+            <div className="text-center">
+              <h1 className="text-lg font-semibold capitalize">
+                {especie?.habitat?.name}
+              </h1>
+              <div className="flex flex-row justify-center items-center text-gray-300 gap-1">
+                <RiHomeLine />
+                <h1 className="text-sm"> Habitat</h1>
+              </div>
             </div>
 
-            {/** TYPES - ICONS */}
-            <div className="flex flex-row justify-center gap-4">
-              {pokemon?.types?.map((item: any, index: any) => {
+            <div className="text-center">
+              <h1 className="text-lg font-semibold capitalize">
+                {especie?.color?.name}
+              </h1>
+              <div className="flex flex-row justify-center items-center gap-1">
+                <span></span>
+                <h1 className="text-sm text-gray-300"> Color</h1>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <h1 className="text-lg font-semibold capitalize">
+                {especie?.pal_park_encounters?.map(
+                  (item: any) => item.area.name
+                )}
+                &nbsp;
+              </h1>
+              <div className="flex flex-row justify-center items-center gap-1">
+                <span></span>
+                <h1 className="text-sm text-gray-300"> Encounters</h1>
+              </div>
+            </div>
+            <div className="text-center">
+              <h1 className="text-lg font-semibold uppercase">
+                {"G-"}
+                {especie?.generation?.name.substr(11)}
+              </h1>
+              <div className="flex flex-row justify-center items-center gap-1">
+                <span></span>
+                <h1 className="text-sm text-gray-300"> Generation</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/** STATS */}
+        <section>
+          <div className="px-5 lg:px-0 mb-10">
+            <h1 className="font-semibold mb-2">Statistics</h1>
+            <div className="w-full px-5 lg:px-10 py-5 rounded-2xl bg-black/20">
+              {pokemon?.stats?.map((item: any, index: any) => {
                 return (
-                  <div
-                    key={index}
-                    className={`w-24 flex flex-row justify-center items-center rounded-lg border ${resultColorBorder(
-                      item.type.name
-                    )} py-1 text-xl mb-4 gap-2 ${resultColorText(
-                      item.type.name
-                    )} `}
-                  >
-                    {Icons(item.type.name)}
-                    <h1 className=" capitalize text-sm text-center font-semibold">
-                      {item.type.name}
-                    </h1>
+                  <div key={index} className="mb-1">
+                    <div className=" w-full flex flex-row items-center justify-between gap-x-6">
+                      <h1 className="w-28 text-gray-300 capitalize Xlg:whitespace-nowrap">
+                        {item.stat.name === "special-attack"
+                          ? "sp. atk"
+                          : item.stat.name === "special-defense"
+                          ? "sp. def"
+                          : item.stat.name}
+                      </h1>
+                      <h1 className="w-12 font-semibold text-end">
+                        {item.base_stat}
+                      </h1>
+                      <progress
+                        value={item.base_stat}
+                        max={110}
+                        style={{ color: "yellow" }}
+                        className="w-full h-1.5 bg-gray-400/10 rounded-full "
+                      />
+                    </div>
                   </div>
                 );
               })}
             </div>
-            {/** TALLA PESO GENERACION */}
-            <div className="w-full grid grid-cols-3 gap-y-4 text-white py-5 mb-5">
-              <div className="text-center">
-                <h1 className="text-lg font-semibold">
-                  {(Number(pokemon.height) * 0.1).toFixed(1)} M
-                </h1>
-                <div className="flex flex-row justify-center items-center text-gray-300 gap-1">
-                  <CgRuler />
-                  <h1 className="text-sm "> Height</h1>
-                </div>
-              </div>
-              <div className="text-center">
-                <h1 className="text-lg font-semibold">{pokemon.weight} KG</h1>
-                <div className="flex flex-row justify-center items-center text-gray-300 gap-1">
-                  <RiWeightLine />
-                  <h1 className="text-sm"> Weight</h1>
-                </div>
-              </div>
-              <div className="text-center">
-                <h1 className="text-lg font-semibold capitalize">
-                  {especie?.habitat?.name} &nbsp;
-                </h1>
-                <div className="flex flex-row justify-center items-center text-gray-300 gap-1">
-                  <RiHomeLine />
-                  <h1 className="text-sm"> Habitat</h1>
-                </div>
-              </div>
+          </div>
 
-              <div className="text-center">
-                <h1 className="text-lg font-semibold capitalize">
-                  {especie?.color?.name}
-                </h1>
-                <div className="flex flex-row justify-center items-center gap-1">
-                  <span></span>
-                  <h1 className="text-sm text-gray-300"> Color</h1>
-                </div>
-              </div>
-
-              <div className="text-center">
-                <h1 className="text-lg font-semibold capitalize">
-                  {especie?.pal_park_encounters?.map(
-                    (item: any) => item.area.namepal_park_encounters
-                  )}
-                  &nbsp;
-                </h1>
-                <div className="flex flex-row justify-center items-center gap-1">
-                  <span></span>
-                  <h1 className="text-sm text-gray-300"> Encounters</h1>
-                </div>
-              </div>
-              <div className="text-center">
-                <h1 className="text-lg font-semibold uppercase">
-                  {"G-"}
-                  {especie?.generation?.name.substr(11)}
-                </h1>
-                <div className="flex flex-row justify-center items-center gap-1">
-                  <span></span>
-                  <h1 className="text-sm text-gray-300"> Generation</h1>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/** STATS */}
-          <section>
-            <div className="px-5 lg:px-0 mb-10">
-              <h1 className="font-semibold mb-2">Statistics</h1>
-              <div className="w-full px-5 lg:px-10 py-5 rounded-2xl bg-black/20">
-                {pokemon?.stats?.map((item: any, index: any) => {
-                  return (
-                    <div key={index} className="mb-1">
-                      <div className=" w-full flex flex-row items-center justify-between gap-x-6">
-                        <h1 className="w-28 text-gray-300 capitalize Xlg:whitespace-nowrap">
-                          {item.stat.name === "special-attack"
-                            ? "sp. atk"
-                            : item.stat.name === "special-defense"
-                            ? "sp. def"
-                            : item.stat.name}
-                        </h1>
-                        <h1 className="w-12 font-semibold text-end">
-                          {item.base_stat}
-                        </h1>
-                        <progress
-                          value={item.base_stat}
-                          max={110}
-                          style={{ color: "yellow" }}
-                          className="w-full h-1.5 bg-gray-400/10 rounded-full "
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            <h1 className="h-64 lg:h-0 "></h1>
-          </section>
-        
+          <h1 className="h-64 lg:h-0 "></h1>
+        </section>
       </section>
 
       <section className="z-20 lg:absolute bottom-10 right-5 p-5 -mt-72 lg:mt-0">
@@ -246,7 +242,7 @@ const Pokemon = ({ params }: any) => {
         <Evolution poke={especie} />
       </section>
     </div>
-  );  
+  );
 };
 
 export default Pokemon;

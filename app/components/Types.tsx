@@ -8,6 +8,7 @@ const Types = () => {
   const {
     types,
     filterSelected,
+
     changeTypeSelected,
     generations,
     generationSelected,
@@ -24,6 +25,13 @@ const Types = () => {
     //console.log(item?.color);
     return item?.colorBg;
   };
+
+  const resultColorText = (type: any) => {
+    const item = TypesColor.find(({ name }) => name === type);
+    //console.log(item?.color);
+    return item?.colorText;
+  };
+
 
   const typesList = TypesColor.sort((a, b) => {
     if (a.name > b.name) {
@@ -64,19 +72,23 @@ const Types = () => {
           </div>
         )}
       </div>
-      <div className="w-full flex flex-row flex-wrap gap-3">
+
+      <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-x-8 gap-y-4">
         {types.map((type) => (
           <div
-            className="px-4 py-2 border rounded-md"
+            className="flex flex-row gap-x-3 cursor-pointer"
             onClick={() => changeType(type)}
             key={type.name}
           >
-            {type.name}
+            <div className={`${resultColorBg(type.name)} ${resultColorText(type.name)} rounded-full p-1.5`}>
+              {Icons(type.name)}
+            </div>
+            <h1 className="capitalize">{type.name}</h1>
           </div>
         ))}
       </div>
 
-      <div className="hidden Xgrid grid-cols-2 py-5 gap-4">
+      <div className="hidden Xgrid grid-cols-2 py-5 gap-5">
         {typesList.sort().map((item, index) => (
           <div key={index}>
             <div className="flex flex-row gap-2">

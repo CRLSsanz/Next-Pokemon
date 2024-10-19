@@ -10,7 +10,7 @@ export const BackgroundColor = [
   { name: "gray", color: "to-gray-500/70" },
 ];
 
-export const TypesColor = [
+export const TypesColorSAVE = [
   {
     name: "normal",
     colorBg: "bg-neutral-600",
@@ -116,6 +116,117 @@ export const TypesColor = [
   {
     name: "dark",
     colorBg: "bg-black/80",
+    colorText: "text-black",
+    colorBorder: "border-gray-300",
+  },
+];
+
+export const TypesColor = [
+  {
+    name: "normal",
+    colorBg: "bg-neutral-200",
+    colorText: "text-neutral-500",
+    colorBorder: "border-neutral-300",
+  },
+  {
+    name: "dragon",
+    colorBg: "bg-gray-200",
+    colorText: "text-gray-600",
+    colorBorder: "border-gray-300",
+  },
+  {
+    name: "steel",
+    colorBg: "bg-zinc-200",
+    colorText: "text-zinc-500",
+    colorBorder: "border-zinc-300",
+  },
+  {
+    name: "rock",
+    colorBg: "bg-stone-200",
+    colorText: "text-stone-500",
+    colorBorder: "border-stone-400",
+  },
+  {
+    name: "poison",
+    colorBg: "bg-purple-200",
+    colorText: "text-purple-600",
+    colorBorder: "border-purple-500",
+  },
+  {
+    name: "psychic",
+    colorBg: "bg-purple-200",
+    colorText: "text-purple-500",
+    colorBorder: "border-purple-500",
+  },
+  {
+    name: "ghost",
+    colorBg: "bg-purple-900",
+    colorText: "text-gray-200",
+    colorBorder: "border-purple-500",
+  },
+  {
+    name: "grass",
+    colorBg: "bg-green-200",
+    colorText: "text-green-500",
+    colorBorder: "border-green-500",
+  },
+  {
+    name: "bug",
+    colorBg: "bg-red-200",
+    colorText: "text-red-500",
+    colorBorder: "border-red-500",
+  },
+  {
+    name: "fighting",
+    colorBg: "bg-red-300",
+    colorText: "text-red-600",
+    colorBorder: "border-red-600",
+  },
+  {
+    name: "fire",
+    colorBg: "bg-orange-200",
+    colorText: "text-orange-500",
+    colorBorder: "border-orange-500",
+  },
+  {
+    name: "fairy",
+    colorBg: "bg-pink-200",
+    colorText: "text-pink-500",
+    colorBorder: "border-pink-500",
+  },
+  {
+    name: "flying",
+    colorBg: "bg-sky-200",
+    colorText: "text-sky-500",
+    colorBorder: "border-sky-400",
+  },
+  {
+    name: "ice",
+    colorBg: "bg-cyan-200",
+    colorText: "text-cyan-500",
+    colorBorder: "border-cyan-500",
+  },
+  {
+    name: "water",
+    colorBg: "bg-blue-200",
+    colorText: "text-blue-500",
+    colorBorder: "border-blue-500",
+  },
+  {
+    name: "electric",
+    colorBg: "bg-yellow-200",
+    colorText: "text-yellow-500",
+    colorBorder: "border-yellow-400",
+  },
+  {
+    name: "ground",
+    colorBg: "bg-gray-200",
+    colorText: "text-amber-700",
+    colorBorder: "border-amber-500",
+  },
+  {
+    name: "dark",
+    colorBg: "bg-white/60",
     colorText: "text-black",
     colorBorder: "border-gray-300",
   },
