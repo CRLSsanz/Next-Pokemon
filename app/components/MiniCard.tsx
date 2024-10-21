@@ -50,6 +50,12 @@ const MiniCard = ({ data }: any) => {
     return item?.colorBg;
   };
 
+  const resultColorText = (type: any) => {
+    const item = TypesColor.find(({ name }) => name === type);
+    //console.log(item?.color);
+    return item?.colorText;
+  };
+
   const gene = especie?.generation?.url?.split("/");
 
   return (
@@ -74,9 +80,7 @@ const MiniCard = ({ data }: any) => {
               return (
                 <div
                   key={index}
-                  className={`p-1.5 rounded-full ${resultColorType(
-                    item.type.name
-                  )}`}
+                  className={`p-1.5 rounded-full ${resultColorType(item.type.name)}  ${resultColorText(item.type.name)}  `}
                 >
                   {Icons(item.type.name)}
                 </div>

@@ -21,7 +21,7 @@ interface ContextProps {
 export const PokemonContext = createContext<ContextProps>({} as ContextProps);
 
 const PokemonProvider = ({ children }: any) => {
-  const allPokemonUrl = `${URL_POKEMON}/?offset=50&limit=10}`;
+  const allPokemonUrl = `${URL_POKEMON}/?offset=20&limit=10}`;
 
   const defaultState: PokemonType = {
     name: "All",
@@ -63,6 +63,7 @@ const PokemonProvider = ({ children }: any) => {
   const changeTypeSelected = async (type: PokemonType) => {
     setPokemonsFiltered(null);
     setFilterSelected(type);
+    
     const { data } = await axios.get(type?.url!);
     let pokemons = data?.pokemon?.map(
       ({ pokemon }: IPokemonByType) => pokemon.url

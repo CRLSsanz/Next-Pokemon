@@ -8,6 +8,8 @@ import Types from "./components/Types";
 import Link from "next/link";
 import MiniCard from "./components/MiniCard";
 import Card from "./components/Card";
+import { GrDashboard } from "react-icons/gr";
+import Dashboard from "./components/Dashboard";
 
 const Pok: any = [];
 
@@ -50,14 +52,12 @@ export default function Home() {
       : []; //arrayPokemon;
 
   return (
-    <div className="lg:h-[600px] w-[1200px] text-white flex flex-row rounded-3xl bg-black/40 backdrop-blur-2xl ">
-      <section className="hidden lg:block lg:basis-1/4 h-full flex-col bg-black/40 rounded-l-3xl backdrop-blur-2xl p-5">
-        <h1 className="text-xl font-semibold">Types</h1>
-        <h1 className="text-sm">All Pokemon</h1>
-        <Types />
+    <div className="lg:h-[768px] w-[1200px] text-white flex flex-row rounded-3xl bg-black/40 backdrop-blur-2xl ">
+      <section className="hidden lg:block h-full flex-col bg-black/40 rounded-l-3xl backdrop-blur-2xl p-5">
+        <Dashboard />
       </section>
 
-      <section className="w-full lg:basis-3/4">
+      <section className="w-full">
         <div className="p-5">
           <h1 className="text-xl font-semibold">Good morning, Charlie </h1>
           <h1 className="text-sm text-gray-400 mb-14">Wellcome to Pokedex Pototype v:2.0</h1>
@@ -75,7 +75,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4 my-5">
+          <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 my-5">
             <Link
               href={`/pokedex`}
               className="rounded-xl px-3 py-5 bg-gradient-to-br from-green-700/70 to-green-500 font-semibold"

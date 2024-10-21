@@ -33,7 +33,7 @@ const Types = () => {
   };
 
 
-  const typesList = TypesColor.sort((a, b) => {
+  const typesList = types.sort((a, b) => {
     if (a.name > b.name) {
       return 1;
     }
@@ -44,37 +44,12 @@ const Types = () => {
     return 0;
   });
 
-  const obtenerGeneracion = (e: any) => {
-    const texto = e.toLowerCase();
-    generationChange(texto);
-  };
-
-  const genx = generationSelected?.url?.split("/")!;
+  const filterType = types.filter((item:any)=>item.name!="All" && item.name!="stellar" && item.name!="unknown")
 
   return (
     <div>
-      <div onClick={() => setOpen(!open)} className="hidden w-48 lg:w-full">
-        <div className="flex flex-row justify-between py-2 px-5 border border-gray-600 rounded-full mb-5">
-          <span>Gen - {genx[6]}</span>
-          <span> v </span>
-        </div>
-        {open && generations && (
-          <div className="w-full flex flex-col border border-white/20 rounded-md px-2 hover:cursor-pointer">
-            {generations?.map((gene) => (
-              <div
-                className="px-4 py-1.5 border-b border-white/20 hover:font-bold"
-                onClick={() => generationChange(gene)}
-                key={gene.name}
-              >
-                {gene.name}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
       <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-x-8 gap-y-4">
-        {types.map((type) => (
+        {filterType.map((type) => (
           <div
             className="flex flex-row gap-x-3 cursor-pointer"
             onClick={() => changeType(type)}

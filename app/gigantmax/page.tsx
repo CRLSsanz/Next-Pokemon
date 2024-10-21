@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { URL_IMAGE, URL_POKEMON } from "../api/apiRest";
 import { PokemonListType } from "../interfaces/interfaces";
 import Card from "../components/Card";
+import Dashboard from "../components/Dashboard";
 
 const Poke: any = [];
 
@@ -41,19 +42,27 @@ const GigantMax = () => {
     return listPokemon;
   };
 
-  const filterPokemons = pokemons?.filter((pokemon:any) => pokemon?.name?.includes(search))
-   // search === "pika"
-    // ? globalPokemon?.filter((pokemon) => pokemon?.name?.includes(search))
-    //  : []; //arrayPokemon;
+  const filterPokemons = pokemons?.filter((pokemon: any) =>
+    pokemon?.name?.includes(search)
+  );
+  // search === "pika"
+  // ? globalPokemon?.filter((pokemon) => pokemon?.name?.includes(search))
+  //  : []; //arrayPokemon;
 
   return (
-    <div className="lg:h-[800px] w-[1400px] text-white flex flex-col rounded-3xl bg-black/40 backdrop-blur-2xl p-5">
-      <h1 className="mb-5">POKEMONS PIKACHU</h1>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
-        {filterPokemons?.map((item: any, index: any) => (
-          <Card key={index} pokemon={item} />
-        ))}
-      </div>
+    <div className="lg:h-[768px] w-[1200px] text-white flex flex-row rounded-3xl bg-black/40 backdrop-blur-2xl ">
+      <section className="hidden lg:block h-full flex-col bg-black/40 rounded-l-3xl backdrop-blur-2xl p-5">
+        <Dashboard />
+      </section>
+
+      <section>
+        <h1 className="mb-5">POKEMONS PIKACHU</h1>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+          {filterPokemons?.map((item: any, index: any) => (
+            <Card key={index} pokemon={item} />
+          ))}
+        </div>
+      </section>
     </div>
   );
 };

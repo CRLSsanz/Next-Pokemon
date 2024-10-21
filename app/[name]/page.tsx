@@ -84,18 +84,18 @@ const Pokemon = ({ params }: any) => {
 
       <section className="">
         {/** BUTTOM CLOSE */}
-        <div className="flex flex-row justify-between text-lg">
-          <Link href={`/pokedex`} className="bg-white/30 rounded-lg p-2">
-            <TbPokeball />
+        <div className="flex flex-row justify-between items-center text-xl mb-10">
+          <Link href={`/pokedex`}>
+            <TbPokeball className="h-6 w-6" />
           </Link>
           <h1 className="font-semibold text-white/50 ">#0{pokemon.id}</h1>
-          <Link href={`/`} className="bg-white/30 rounded-lg p-2">
-            <AiOutlineClose />
+          <Link href={`/`}>
+            <AiOutlineClose className="h-6 w-6" />
           </Link>
         </div>
 
         {/** IMAGEN */}
-        <div className="flex px-10">
+        <div className="flex px-16">
           <img
             className="w-full z-20 hover:scale-110"
             src={pokemon?.sprites?.other["official-artwork"]?.front_default}
@@ -108,7 +108,7 @@ const Pokemon = ({ params }: any) => {
         className={`Xrelative w-full  -mt-16 lg:basis-3/4 rounded-3xl lg:rounded-l-none lg:rounded-r-3xl backdrop-blur-2xl bg-black/50 Xbg-gradient-to-br from-black/0 ${bgColor?.color}  text-white lg:pl-10`}
       >
         {/** DETALLE */}
-        <section className={`lg:relative basis-1/2 pt-10 lg:pr-10 `}>
+        <section className={`lg:relative basis-1/2 pt-10 lg:pr-10  `}>
           {/** NOMBRE - INFO */}
           <div className="text-center mb-5 px-5 lg:px-0">
             <h1 className="capitalize tracking-wider font-bold text-3xl pt-4 mb-2 lg:pt-10 ">
@@ -149,7 +149,7 @@ const Pokemon = ({ params }: any) => {
               </div>
             </div>
             <div className="text-center">
-              <h1 className="text-lg font-semibold">{pokemon.weight} KG</h1>
+              <h1 className="text-lg font-semibold">{(pokemon.weight*0.1).toFixed(0)} KG</h1>
               <div className="flex flex-row justify-center items-center text-gray-300 gap-1">
                 <RiWeightLine />
                 <h1 className="text-sm"> Weight</h1>
