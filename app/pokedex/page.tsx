@@ -129,10 +129,9 @@ const Pokedex = () => {
               ) : (
                 <Link
                   href="/pokedex#up"
-                  className="rounded-full text-center py-2 px-5 bg-teal-600"
+                  className="rounded-full text-center py-2 px-10 bg-gradient-to-br from-purple-500 to-teal-700"
                 >
-                  <span>Total: {pokemons.length} pokemons</span>
-                  <span>{` - SUBIR `}</span>
+                  <span>{` Up `}</span>
                 </Link>
               )}
             </div>
