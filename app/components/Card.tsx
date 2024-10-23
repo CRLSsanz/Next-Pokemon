@@ -4,6 +4,7 @@ import Icons from "./Icons";
 import { PokemonListType } from "../interfaces/interfaces";
 import Link from "next/link";
 import { BsArrowsAngleExpand } from "react-icons/bs";
+import { TbMaximize } from "react-icons/tb";
 
 interface Props {
   url: string;
@@ -15,7 +16,7 @@ const Card = ({ pokemon }: any) => {
   //console.log(pokemon)
   return (
     <div className=" relative my-5 ">
-      <div className="px-20 bg-gradient-to-l from-black/5 to-purple-500/30 rounded-xl border border-gray-500/30">
+      <div className="Xpx-20 bg-gradient-to-b from-black/0 to-black/50 rounded-xl border border-gray-500/10">
         <img
           className="w-full -mt-8 -mb-4 hover:scale-110"
           src={pokemon.image}
@@ -24,21 +25,21 @@ const Card = ({ pokemon }: any) => {
         />
       </div>
 
-      <div className="px-5 -mt-8 w-full flex flex-row justify-between items-center text-lg text-gray-400">
+      <div className="px-3 X-mt-8 w-full flex flex-row justify-between items-center text-gray-400">
         <h1 className="capitalize truncate">
           {pokemon.name.replace("-mega", " ").replace("-gmax", " ").replace("-", " ")}
         </h1>
 
-        <h1 className="font-semibold">
+        <h1 className="hidden font-semibold">
           #{pokemon.pokedexNumber}
         </h1>
       </div>
 
       <Link
         href={`/${pokemon?.name?.replaceAll(" ", "-").toLowerCase()}#view`}
-        className={`absolute top-0 right-0 z-50 p-3`}
+        className={`absolute top-0 right-0 z-50 active:animate-ping rotate-90 hover:scale-110 p-1.5`}
       >
-        <BsArrowsAngleExpand className="w-6 h-6 " />
+        <TbMaximize className="w-5 h-5 text-gray-300" />
       </Link>
 
     </div>

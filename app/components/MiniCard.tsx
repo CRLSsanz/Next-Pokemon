@@ -6,6 +6,7 @@ import Link from "next/link";
 import { TfiArrowsCorner } from "react-icons/tfi";
 import { BackgroundColor, TypesColor } from "./Colors";
 import Icons from "./Icons";
+import { TbMaximize } from "react-icons/tb";
 
 const Pok: any = [];
 
@@ -92,16 +93,13 @@ const MiniCard = ({ data }: any) => {
         <div className="absolute bottom-4 right-2 font-bold text-lg ">
           G.{gene ? gene[6] : null}
         </div>
-        <div className="absolute top-2 right-2 flex flex-col gap-2">
+        <div className="absolute top-1 right-1 flex">
           <Link
             href={`/${pokemon?.name?.replaceAll(" ", "-").toLowerCase()}#view`}
-            className="text-sm bg-white/30 rounded-lg p-1 active:animate-ping rotate-90"
+            className="active:animate-ping rotate-90 p-1 hover:scale-110"
           >
-            <TfiArrowsCorner />
+            <TbMaximize className="w-5 h-5" />
           </Link>
-          <div className="hidden text-sm text-gray-200/50 bg-gray-500/50 rounded-full p-1 active:animate-ping">
-            <FaRegHeart />
-          </div>
         </div>
       </div>
     </div>

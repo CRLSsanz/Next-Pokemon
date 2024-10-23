@@ -48,17 +48,17 @@ const Types = () => {
 
   return (
     <div>
-      <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-x-8 gap-y-4">
+      <div className="w-full grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-x-8 gap-y-4">
         {filterType.map((type) => (
           <div
-            className="flex flex-row gap-x-3 cursor-pointer"
+            className="flex flex-col items-center gap-x-3 cursor-pointer"
             onClick={() => changeType(type)}
             key={type.name}
           >
-            <div className={`${resultColorBg(type.name)} ${resultColorText(type.name)} rounded-full p-1.5`}>
+            <div className={`${resultColorBg(type.name)} ${resultColorText(type.name)} rounded-full p-2.5`}>
               {Icons(type.name)}
             </div>
-            <h1 className="capitalize">{type.name}</h1>
+            <h1 className="mt-1 text-sm text-gray-400 capitalize">{type.name}</h1>
           </div>
         ))}
       </div>

@@ -5,12 +5,13 @@ import Types from "../components/Types";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import MicroCard from "../components/MicroCard";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineSwapLeft } from "react-icons/ai";
 import { MdCatchingPokemon } from "react-icons/md";
 import { PokemonContext } from "../context/PokemonContext";
 import Generation from "../components/Generation";
 import usePagination from "../hooks/usePagination";
 import Dashboard from "../components/Dashboard";
+import { TbPokeball } from "react-icons/tb";
 
 const Pok: any = [];
 
@@ -55,11 +56,12 @@ const Pokedex = () => {
 
       <section className="w-full">
         <div className="-mt-10 flex flex-row items-center justify-between">
-          <h1 className="flex flex-row items-center justify-center font-bold">
-            <MdCatchingPokemon className="h-6 w-6" /> <span className="text-xl pl-2">Pokedex</span>
-          </h1>
-          <Link href={`/`} >
-            <AiOutlineClose className="h-6 w-6" />
+          <Link href={`/`}>
+            <AiOutlineSwapLeft className="text-gray-300 active:animate-ping h-6 w-6" />
+          </Link>
+          <h1 className="text-xl">Pokedex</h1>
+          <Link href={`/pokedex`}>
+            <TbPokeball className="hidden text-transparent active:animate-ping h-6 w-6" />
           </Link>
         </div>
 
@@ -74,7 +76,7 @@ const Pokedex = () => {
           <div className="px-2 -mt-5 grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-y-5 gap-x-2 mb-10">
             {pokemons?.length! > 0 ? (
               pokemons?.map((item: any, index: any) => (
-                <MicroCard key={index} url={item}></MicroCard>
+                <MicroCard key={index} url={item} />
               ))
             ) : (
               <h1>Empty</h1>

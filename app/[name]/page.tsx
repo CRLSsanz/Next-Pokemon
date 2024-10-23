@@ -11,7 +11,9 @@ import Types from "../components/Types";
 import { RiHomeLine, RiWeightLine } from "react-icons/ri";
 import { CgRuler } from "react-icons/cg";
 import { TbPokeball } from "react-icons/tb";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineSwapLeft } from "react-icons/ai";
+import { GoSearch } from "react-icons/go";
+import { FiSearch } from "react-icons/fi";
 
 const Pok: any = [];
 
@@ -83,16 +85,16 @@ const Pokemon = ({ params }: any) => {
       </section>
 
       <section className="">
-        {/** BUTTOM CLOSE */}
-        <div className="flex flex-row justify-between items-center text-xl mb-10">
+        <div className="flex flex-row items-center justify-between mb-5">
           <Link href={`/pokedex`}>
-            <TbPokeball className="h-6 w-6" />
+            <TbPokeball className="text-gray-300 active:animate-ping h-6 w-6" />
           </Link>
-          <h1 className="font-semibold text-white/50 ">#0{pokemon.id}</h1>
+          <h1 className="text-xl"># 0{pokemon.id}</h1>
           <Link href={`/`}>
-            <AiOutlineClose className="h-6 w-6" />
+            <FiSearch className="text-gray-300 active:animate-ping h-6 w-6" />
           </Link>
         </div>
+
 
         {/** IMAGEN */}
         <div className="flex px-16">

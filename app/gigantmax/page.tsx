@@ -8,13 +8,15 @@ import Card from "../components/Card";
 import Dashboard from "../components/Dashboard";
 import Link from "next/link";
 import { MdCatchingPokemon } from "react-icons/md";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineSwapLeft } from "react-icons/ai";
+import { CgPokemon } from "react-icons/cg";
+import { TbPokeball } from "react-icons/tb";
 
 const Poke: any = [];
 
 const GigantMax = () => {
   const [pokemons, setPokemons] = useState(Poke);
-  const [evo, setEvo] = useState("mega");
+  const [evo, setEvo] = useState("gmax");
   const search = "mega";
 
   useEffect(() => {
@@ -60,23 +62,25 @@ const GigantMax = () => {
       </section>
 
       <section className="w-full p-5">
-        <div className="flex flex-row items-center justify-between">
-          <h1 className="flex flex-row items-center justify-center font-bold">
-            <MdCatchingPokemon className="hidden h-6 w-6" />{" "}
-            <span className="text-xl pl-2"> </span>
-          </h1>
+        <div className="flex flex-row items-center justify-between mb-5">
           <Link href={`/`}>
-            <AiOutlineClose className="h-6 w-6" />
+            <AiOutlineSwapLeft  className="text-gray-300 active:animate-ping h-6 w-6" />
+          </Link>
+          <h1 className="text-xl">
+              Mega vs G-Max
+          </h1>
+          <Link href={`/pokedex`}>
+            <TbPokeball className="text-gray-300 active:animate-ping h-6 w-6" />
           </Link>
         </div>
 
-        <div className="px-4 flex flex-row justify-between rounded-full border border-gray-500/50 my-5">
-          <h1 className={`cursor-pointer p-2 ${evo==="mega" ? " font-bold ":" font-normal"} `} onClick={()=>setEvo("mega")}>Mega Pokemons</h1>
-          <h1 className={`cursor-pointer p-2 ${evo==="gmax" ? " font-bold ":" font-normal"} `} onClick={()=>setEvo("gmax")}>Pokemons Gigant</h1>
+        <div className="px-4 flex flex-row justify-between rounded-full border border-gray-500/50 bg-gradient-to-br from-indigo-600 to-purple-600 mb-10">
+          <h1 className={`active:animate-ping cursor-pointer p-2 ${evo==="mega" ? " font-bold text-white ":" font-normal text-gray-300 "} `} onClick={()=>setEvo("mega")}>Mega-Poke</h1>
+          <h1 className={`active:animate-ping cursor-pointer p-2 ${evo==="gmax" ? " font-bold text-white ":" font-normal text-gray-300 "} `} onClick={()=>setEvo("gmax")}>Pokemons G-Max</h1>
         </div>
 
         <div className="">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {filterPokemons?.map((item: any, index: any) => (
               <Card key={index} pokemon={item} />
             ))}

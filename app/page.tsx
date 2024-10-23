@@ -60,7 +60,7 @@ export default function Home() {
       <section className="w-full">
         <div className="p-5">
           <h1 className="text-xl font-semibold">Good morning, Charlie </h1>
-          <h1 className="text-sm text-gray-400 mb-14">Wellcome to Pokedex Pototype v:2.0</h1>
+          <h1 className="text-sm text-gray-400 mb-14">Wellcome to Pokedex Pototype v. 2.0</h1>
           <h1 className="text-3xl font-semibold py-5">
             What Pokemon are you looking for?{" "}
           </h1>
@@ -98,12 +98,12 @@ export default function Home() {
             <Link
               href={`/gigantmax`}
               className="rounded-xl px-3 py-5 bg-gradient-to-br from-yellow-700/70 to-yellow-500 font-semibold">
-              GigantMax
+              Mega & Gmax
             </Link>
             <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-purple-700/70 to-purple-500 font-semibold">
-              purple
+              Items
             </div>
-            <div className="rounded-xl px-3 py-5 bg-gradient-to-br from-yellow-900/70 to-yellow-700 font-semibold">
+            <div className="hidden rounded-xl px-3 py-5 bg-gradient-to-br from-yellow-900/70 to-yellow-700 font-semibold">
               marron
             </div>
           </div>

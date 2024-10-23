@@ -1,14 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { URL_POKEMON, URL_SPECIES } from "../api/apiRest";
-import { BsArrowsAngleExpand } from "react-icons/bs";
+import { BsArrowsAngleExpand, BsBoxArrowInUpRight, BsBoxArrowUpRight } from "react-icons/bs";
 import Link from "next/link";
 import { MdCatchingPokemon } from "react-icons/md";
-import { TbPokeball } from "react-icons/tb";
+import { TbMaximize, TbPokeball } from "react-icons/tb";
 import { CgPokemon } from "react-icons/cg";
 import { BackgroundColor } from "./Colors";
 import { PokemonListType } from "../interfaces/interfaces";
 import usePokemon from "../hooks/usePokemon";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { GoCopy } from "react-icons/go";
 
 const Pok: any = [];
 
@@ -26,14 +28,14 @@ const MicroCard = ({ url }: Props) => {
 
   const [especie, setEspecie] = useState(Pok); //
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (show === true) {
       setTimeout(() => {
         setShow(false);
-      }, 6000);
+      }, 7000);
     }
   }, [show]);
 
@@ -92,21 +94,25 @@ const MicroCard = ({ url }: Props) => {
         } `}
       >
         <div className="w-full pt-6">
-          <div className="flex flex-row justify-center items-center font-semibold">
-            <TbPokeball /> <span className="pl-1 -mt-0.5"> {pokemon.id}</span>
+          <div className={`flex flex-row justify-center items-center font-semibold ${
+          show
+            ? " text-gray-400 "
+            : " text-transparent "
+        } `}>
+            <TbPokeball /> <span className={`pl-1 X-mt-0.5 `}> {pokemon.id}</span>
           </div>
         </div>
-        <h1 className="text-center text-sm capitalize whitespace-nowrap -mt-1 ">
+        <h1 className="text-center text-sm capitalize whitespace-nowrap ">
           {pokemon.name}
         </h1>
       </div>
       <Link
         href={`/${pokemon?.name?.replaceAll(" ", "-").toLowerCase()}#view`}
-        className={`absolute top-0 right-0 z-50 bg-white/20 border border-gray-500/50 rounded-md p-2 ${
+        className={`absolute top-0 right-0 z-30 active:animate-ping rotate-90 hover:scale-110 p-1 ${
           show ? " block " : " hidden "
         } `}
       >
-        <BsArrowsAngleExpand />
+        <TbMaximize className="w-5 h-5" />
       </Link>
     </div>
   );

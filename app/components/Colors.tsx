@@ -1,13 +1,14 @@
 export const BackgroundColor = [
-  { name: "red", color: "to-red-500/30" },
-  { name: "pink", color: "to-pink-500/20" },
-  { name: "green", color: "to-green-500/20" },
-  { name: "blue", color: "to-sky-500/40" },
-  { name: "purple", color: "to-purple-500/30" },
-  { name: "yellow", color: "to-yellow-500/30" },
+  { name: "red", color: "to-red-500/40" },
+  { name: "pink", color: "to-pink-500/30" },
+  { name: "green", color: "to-green-500/30" },
+  { name: "blue", color: "to-sky-500/50" },
+  { name: "purple", color: "to-purple-500/40" },
+  { name: "yellow", color: "to-yellow-500/40" },
   { name: "brown", color: "to-yellow-950/50" },
-  { name: "white", color: "to-white/10" },
-  { name: "gray", color: "to-gray-500/70" },
+  { name: "white", color: "to-white/30" },
+  { name: "gray", color: "to-gray-500/80" },
+  { name: "black", color: "to-black/80" },
 ];
 
 export const TypesColorSAVE = [

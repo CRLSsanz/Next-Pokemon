@@ -8,10 +8,11 @@ import Card from "../components/Card";
 import MicroCard from "../components/MicroCard";
 import Dashboard from "../components/Dashboard";
 import Link from "next/link";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineSwapLeft } from "react-icons/ai";
+import { TbPokeball } from "react-icons/tb";
 
 const PokeTypes = () => {
-  const { pokemonsFiltered } = useContext(PokemonContext);
+  const { pokemonsFiltered, filterSelected } = useContext(PokemonContext);
 
   //console.log(pokemonsFiltered)
 
@@ -22,12 +23,13 @@ const PokeTypes = () => {
       </section>
 
       <section className="w-full">
-        <div className="-mt-10 flex flex-row items-center justify-between">
-          <h1 className="flex flex-row items-center justify-center font-bold">
-             <span className="text-xl pl-2">Pokemons Types</span>
-          </h1>
-          <Link href={`/`} >
-            <AiOutlineClose className="h-6 w-6" />
+        <div className="-mt-10 flex flex-row items-center justify-between mb-5">
+          <Link href={`/`}>
+            <AiOutlineSwapLeft className="text-gray-300 active:animate-ping h-6 w-6" />
+          </Link>
+          <h1 className="text-xl">Pokemons Types</h1>
+          <Link href={`/pokedex`}>
+            <TbPokeball className="text-gray-300 active:animate-ping h-6 w-6" />
           </Link>
         </div>
 
@@ -35,13 +37,20 @@ const PokeTypes = () => {
           <Types />
         </div>
 
-        <div className="p-5 ">{pokemonsFiltered?.length}</div>
-
-        <div className="w-full grid grid-cols-3 lg:grid-cols-6 gap-5">
-          {pokemonsFiltered?.map((items: any, index: any) => (
-            <MicroCard key={index} url={items} />
-          ))} 
+        <div className="p-5">
+          <div className="capitalize text-center font-semibold p-2 bg-gradient-to-br from-teal-600 to-indigo-600 rounded-full">
+            <span className="uppercase">{filterSelected.name}</span> ={" "}
+            {pokemonsFiltered?.length} pokemons
+          </div>
         </div>
+
+        <div className="px-2 w-full grid grid-cols-3 lg:grid-cols-6 gap-2">
+          {pokemonsFiltered?.slice(0, 24).map((items: any, index: any) => (
+            <MicroCard key={index} url={items} />
+          ))}
+        </div>
+
+        <h1 className="h-5"> </h1>
       </section>
     </div>
   );
